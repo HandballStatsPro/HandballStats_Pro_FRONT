@@ -16,16 +16,27 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       return { 
         success: false,
-        message: error.response?.data?.message || 'Error de conexión'
+        message: error.response?.data?.message || 'Error de conexión',
+        code: error.response?.data?.code || 'unknown_error'
       };
     }
   };
 
   const register = async ({ nombre, email, contraseña }) => {
-    const data = await registerReq(nombre, email, contraseña);
-    localStorage.setItem('token', data.token);
-    setUser(data.usuario);
+    try {
+      const result = await registerReq(nombre, email, contraseña);
+      localStorage.setItem('token', result.token);
+      setUser(result.usuario);      
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Error en el registro',
+        code: error.response?.data?.code || 'registration_failed'
+      };
+    }
   };
+
 
   const logout = () => {
     localStorage.removeItem('token');

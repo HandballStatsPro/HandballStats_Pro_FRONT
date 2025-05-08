@@ -35,11 +35,12 @@ const Sidebar = ({ onToggle }) => {
   const linkItems = [
     { to: '/inicio', icon: <FaHome />, label: 'Inicio' },
     { to: '/profile', icon: <FaUser />, label: 'Perfil' },
-    ...(user?.rol === 'Admin'
-      ? [{ to: '/users', icon: <FaUsers />, label: 'Usuarios' }]
+    ...(user?.rol === 'Admin' 
+      ? [{ to: '/users', icon: <FaUsers />, label: 'Usuarios' }] 
       : []),
-    // Nuevos ítems (sin rutas funcionales todavía)
-    { icon: <FaBuilding />, label: 'Club' },
+    ...(['Admin', 'GestorClub'].includes(user?.rol) 
+      ? [{ to: '/club', icon: <FaBuilding />, label: 'Clubes' }] 
+      : []),
     { icon: <FaUsersCog />, label: 'Equipos' },
     { icon: <FaFutbol />, label: 'Partidos' },
     { icon: <FaChartBar />, label: 'Estadísticas' },

@@ -7,7 +7,6 @@ const Inicio = () => (
     className="d-flex flex-column align-items-center justify-content-start py-5"
     style={{ backgroundColor: '#f4f3f2', minHeight: '100vh' }}
   >
-    {/* Isotipo grande */}
     <img
       src="/isotipo_sin_fondo.png"
       alt="HandballStatsPro"
@@ -18,12 +17,10 @@ const Inicio = () => (
       }}
     />
 
-    {/* Título principal */}
     <h1 className="mb-4 text-center" style={{ color: '#780000' }}>
       Bienvenido a HandballStats Pro
     </h1>
 
-    {/* Cards informativas */}
     <Row className="w-100 justify-content-center px-3" style={{ maxWidth: '1200px' }}>
       <Col md={6} className="mb-4">
         <Card style={{ borderLeft: '6px solid #669bbc', borderRadius: '16px' }}>

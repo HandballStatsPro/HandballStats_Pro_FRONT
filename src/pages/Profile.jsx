@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getUserById, updateUser } from '../services/userService';
-
+import { getCurrentUser, getUserById, updateUser } from '../services/userService';
 const Profile = () => {
   const { user } = useAuth();
   const { id } = useParams();
@@ -12,30 +11,71 @@ const Profile = () => {
   const [data, setData] = useState(null);
   const [form, setForm] = useState({});
   const [editing, setEditing] = useState(false);
+    const [errors, setErrors] = useState({
+      general: '',
+      email: '',
+      password: ''
+    });
   const navigate = useNavigate();
 
   useEffect(() => {
-    getUserById(userId)
-      .then(u => {
-        setData(u);
-        setForm({ nombre: u.nombre, email: u.email, contraseña: '', rol: u.rol });
-      })
-      .catch(() => alert('Error al cargar perfil'));
-  }, [userId]);
+    const loadProfile = async () => {
+        try {
+            let userData;
+            if (id) {
+                userData = await getUserById(id);
+            } else {
+                userData = await getCurrentUser();
+            }
+            setData(userData);
+            // Inicializar el formulario con los datos actuales
+            setForm({
+                nombre: userData.nombre,
+                email: userData.email,
+                contraseña: userData.contraseña,
+                rol: userData.rol
+            });
+        } catch (error) {
+            alert('Error al cargar perfil');
+        }
+    };
+    
+    loadProfile();
+}, [id]);
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    updateUser(userId, form)
-      .then(updatedUser => {
-        alert('Perfil actualizado');
-        setData(updatedUser);       // Actualizamos el estado
+    try {
+        const updatedUser = await updateUser(userId, form);
+        
+        // Actualizar los datos locales
+        setData(updatedUser);
+        // Salir del modo edición
         setEditing(false);
-        if (!editingSelf) navigate('/users');
-      })
-      .catch(() => alert('Error al actualizar'));
-  };
+        // Limpiar errores
+        setErrors({ general: '', email: '', password: '' });
+        
+        // Si es admin, redirigir a lista de usuarios
+        if (!editingSelf && isAdmin) {
+            navigate('/users');
+        }
+        
+    } catch (error) {
+        if (error.response?.data?.code === 'email_existente') {
+            setErrors({
+                email: error.response.data.message,
+                general: ''
+            });
+        } else {
+            setErrors({
+                general: error.response?.data?.message || 'Error al actualizar el perfil',
+                email: ''
+            });
+        }
+    }
+};
 
   if (!data) return <p>Cargando...</p>;
 
@@ -118,8 +158,12 @@ const Profile = () => {
                   type="email"
                   value={form.email}
                   onChange={handleChange}
+                  isInvalid={!!errors.email}
                   style={{ borderRadius: '8px' }}
                 />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
               </Form.Group>
             </Col>
           </Row>
@@ -159,7 +203,17 @@ const Profile = () => {
               </Form.Group>
             </Col>
           </Row>
+          {errors.general && (
+              <div className="alert alert-danger mb-3">
+                  {errors.general}
+              </div>
+          )}
 
+          {!errors.general && data.updatedAt && (
+              <div className="alert alert-success mb-3">
+                  Perfil actualizado correctamente
+              </div>
+          )}
           <div className="text-center">
             <Button
               type="submit"

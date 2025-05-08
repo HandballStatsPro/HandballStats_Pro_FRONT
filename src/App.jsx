@@ -7,6 +7,8 @@ import Register from './pages/Register';
 import Inicio from './pages/Inicio';
 import Users from './pages/Users';
 import Profile from './pages/Profile';
+import Clubs from './pages/Clubs';
+import ClubForm from './pages/ClubForm';
 
 export default function App() {
   const location = useLocation();
@@ -35,6 +37,11 @@ export default function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/users" element={<Users />} />
             <Route path="/users/:id/edit" element={<Profile />} />
+            <Route element={<PrivateRoute allowedRoles={['Admin', 'GestorClub']} />}>
+              <Route path="/club" element={<Clubs />} />
+              <Route path="/club/new" element={<ClubForm />} />
+              <Route path="/club/:id" element={<ClubForm />} />
+            </Route>
           </Route>
         </Routes>
       </main>

@@ -7,15 +7,24 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', contraseña: '' });
+  const [error, setError] = useState({ message: '', type: '' });
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
   const handleSubmit = async e => {
     e.preventDefault();
-    try {
-      await login(form);
+    setError({ message: '', type: '' });
+    
+    const { success, message, code } = await login(form);
+    
+    if (success) {
       navigate('/inicio');
-    } catch {
-      alert('Credenciales inválidas');
+    } else {
+      setError({
+        message: code === 'bad_credentials' 
+          ? 'Email o contraseña incorrectos' 
+          : message,
+        type: code
+      });
     }
   };
 
@@ -57,6 +66,14 @@ const Login = () => {
             <h5 className="text-center text-white mb-0">Iniciar Sesión</h5>
           </div>
           <Card.Body>
+            {error.message && (
+              <div className={`alert ${error.type === 'validation_error' 
+                ? 'alert-warning' 
+                : 'alert-danger'} mb-3`}
+              >
+                {error.message}
+              </div>
+            )}
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
