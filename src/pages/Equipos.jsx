@@ -2,54 +2,58 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, Container, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getClubs, deleteClub } from '../services/clubService';
+import { getEquipos, deleteEquipo } from '../services/equipoService';
 
-const Clubs = () => {
+const Equipos = () => {
   const { user } = useAuth();
-  const [clubs, setClubs] = useState([]);
+  const [equipos, setEquipos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const loadClubs = async () => {
+
+  const loadEquipos = async () => {
     try {
       setLoading(true);
       setError('');
-      const data = await getClubs(user.rol, user.idUsuario);
-      setClubs(data);
-    } catch (error) {
-      setError('Error cargando clubes');
+      
+      const data = await getEquipos(user.rol, user.idUsuario);
+
+      setEquipos(Array.isArray(data) ? data : []);
+      
+    } catch (err) {
+      setError('Error cargando equipos');
+      setEquipos([]);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    if (user) loadClubs();
+    if (user) loadEquipos();
   }, [user]);
 
   const handleDelete = async (id) => {
-    if (window.confirm('¿Eliminar este club?')) {
+    if (window.confirm('¿Eliminar este equipo?')) {
       try {
-        await deleteClub(id);
-        loadClubs();
+        await deleteEquipo(id);
+        loadEquipos();
       } catch (error) {
-        setError('Error eliminando club');
+        setError('Error eliminando equipo');
       }
     }
   };
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const date = new Date(dateString);
-    return date.toLocaleDateString('es-ES', options);
+    return new Date(dateString).toLocaleDateString('es-ES', options);
   };
 
   if (loading) {
     return (
       <div className="text-center mt-5">
         <Spinner animation="border" variant="primary" />
-        <p>Cargando clubes...</p>
+        <p>Cargando equipos...</p>
       </div>
     );
   }
@@ -57,13 +61,12 @@ const Clubs = () => {
   return (
     <Container className="mt-5">
       <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
-        Gestión de Clubes
+        Gestión de Equipos
       </h2>
 
-      {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
         <div className="text-center mt-4">
           <Button
-            onClick={() => navigate('/club/new')}
+            onClick={() => navigate('/equipo/new')}
             style={{
               backgroundColor: '#669bbc',
               border: 'none',
@@ -72,81 +75,77 @@ const Clubs = () => {
               padding: '10px 25px'
             }}
           >
-            Nuevo Club
+            Nuevo Equipo
           </Button>
         </div>
-      )}
 
       {error ? (
         <Alert variant="danger" className="text-center">
-          {error} <Button variant="link" onClick={loadClubs}>Reintentar</Button>
+          {error} <Button variant="link" onClick={loadEquipos}>Reintentar</Button>
         </Alert>
-      ) : clubs.length === 0 ? (
-        <div className="text-center">No se encontraron clubes</div>
+      ) : Array.isArray(equipos) && equipos.length === 0 ? (
+        <div className="text-center">No se encontraron equipos</div>
       ) : (
-        <div
-          style={{
-            background: 'white',
-            borderRadius: '12px',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
-            overflowX: 'auto',
-          }}
-        >
-          <style>{`
-            .btn-edit:hover { background-color: #f4f3f2 !important; color: black !important; }
-            .btn-delete:hover { background-color: #f4f3f2 !important; color: black !important; }
-          `}</style>
-
+        <div style={{
+          background: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+          overflowX: 'auto',
+          marginTop: '20px'
+        }}>
           <Table responsive striped hover className="mb-0">
-            <thead>
-              <tr style={{ backgroundColor: '#669bbc', color: 'white' }}>
-                {user.rol === 'Admin' && <th>ID</th>}
+            <thead style={{ backgroundColor: '#669bbc', color: 'white' }}>
+              <tr>
+                {user.rol === 'Admin' && <th>Id</th>}                
                 <th>Nombre</th>
-                <th>Ciudad</th>
-                <th>Fundación</th>
-                {user.rol === 'Admin' && <th>Gestores</th>}
+                <th>Categoría</th>
+                <th>Competición</th>
+                <th>Club</th>
+                {(user.rol === 'Admin' || user.rol === 'GestorClub') && <th>Entrenadores</th>}
+                <th>Fecha Creación</th>
                 <th className="text-center">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {clubs.map(club => (
-                <tr key={club.idClub}>
-                  {user.rol === 'Admin' && <td>{club.idClub}</td>}
-                  <td>{club.nombre}</td>
-                  <td>{club.ciudad}</td>
-                  <td>{formatDate(club.fechaCreacionClub)}</td>
-                  {user.rol === 'Admin' && (
-                    <td>
-                      {club.gestores?.length > 0
-                        ? club.gestores.map(g => `${g.idUsuario}.- ` + g.nombre ).join(', ')
-                        : '-'}
-                    </td>
-                  )}
+              {Array.isArray(equipos) && equipos.map(equipo => (
+                <tr key={equipo.idEquipo}>
+                  {user.rol === 'Admin' && <td>{equipo.idEquipo}</td>}
+                  <td>{equipo.nombre}</td>
+                  <td>{equipo.categoria}</td>
+                  <td>{equipo.competicion}</td>
+                  <td>{equipo.clubNombre || '-'}</td>
+                 {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
+                   <td>
+                     {(equipo.entrenadores ?? [])
+                       .map(u => u.nombre || u.email)
+                       .join(', ') || '-'}
+                   </td>
+                 )}
+                  <td>{formatDate(equipo.fechaCreacionEquipo)}</td>
                   <td className="text-center">
                     <Button
                       size="sm"
-                      className="btn-edit me-2"
+                      className="me-2"
                       style={{
                         backgroundColor: '#669bbc',
                         border: 'none',
                         borderRadius: '6px',
                         fontWeight: '500',
                       }}
-                      onClick={() => navigate(`/club/${club.idClub}`)}
+                      onClick={() => navigate(`/equipo/${equipo.idEquipo}`)}
                     >
                       Editar
                     </Button>
-                    {user.rol === 'Admin' && (
+                    {(user.rol === 'Admin') && (
                       <Button
                         size="sm"
-                        className="btn-delete"
                         style={{
                           backgroundColor: '#780000',
                           border: 'none',
                           borderRadius: '6px',
                           fontWeight: '500',
                         }}
-                        onClick={() => handleDelete(club.idClub)}
+                        onClick={() => handleDelete(equipo.idEquipo)}
                       >
                         Eliminar
                       </Button>
@@ -162,4 +161,4 @@ const Clubs = () => {
   );
 };
 
-export default Clubs;
+export default Equipos;

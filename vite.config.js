@@ -12,7 +12,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false
       },
-      '^/(usuarios|club)': { // Expresión regular para múltiples rutas
+      '^/(usuarios|club|equipo)': { // Expresión regular para múltiples rutas
         target: 'http://localhost:8080',
         changeOrigin: true,
         secure: false

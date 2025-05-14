@@ -41,7 +41,7 @@ const Sidebar = ({ onToggle }) => {
     ...(['Admin', 'GestorClub'].includes(user?.rol) 
       ? [{ to: '/club', icon: <FaBuilding />, label: 'Clubes' }] 
       : []),
-    { icon: <FaUsersCog />, label: 'Equipos' },
+    { to: '/equipo', icon: <FaUsersCog />, label: 'Equipos' },
     { icon: <FaFutbol />, label: 'Partidos' },
     { icon: <FaChartBar />, label: 'Estadísticas' },
   ];

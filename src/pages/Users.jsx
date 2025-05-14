@@ -19,12 +19,10 @@ const Users = () => {
           setUsers(data);
         } else {
           setError('Formato de datos inválido');
-          console.error('Respuesta inesperada:', data);
         }
       })
       .catch(err => {
         setError('Error cargando usuarios');
-        console.error('Error:', err);
       })
       .finally(() => setLoading(false));
   };

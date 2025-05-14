@@ -41,7 +41,6 @@ const ClubForm = () => {
         });
         setGestores(data.gestores || []);
       } catch (err) {
-        console.error(err);
         setError('Error al cargar el club');
       } finally {
         setLoading(false);
@@ -68,7 +67,6 @@ const ClubForm = () => {
         navigate('/club');
       }
     } catch (err) {
-      console.error(err);
       setError(err.response?.data?.message || 'Error guardando el club');
     } finally {
       setSaving(false);
@@ -88,7 +86,6 @@ const ClubForm = () => {
       setGestorEmail('');
       setSuccess('Gestor asignado correctamente');
     } catch (err) {
-      console.error(err);
       setError(err.response?.data?.message || 'Error asignando gestor');
     }
   };
@@ -101,7 +98,6 @@ const ClubForm = () => {
       setGestores(gestores.filter(g => g.idUsuario !== idUsuario));
       setSuccess('Gestor eliminado correctamente');
     } catch (err) {
-      console.error(err);
       setError('Error eliminando gestor');
     }
   };
@@ -178,7 +174,7 @@ const ClubForm = () => {
           <div className="d-flex justify-content-end gap-3">
             <Button
               variant="secondary"
-              onClick={() => isEditing ? setSuccess('') : navigate('/club')}
+              onClick={() => navigate(isEditing ? '/club' : '/club')}
               style={{
                 backgroundColor: '#f4f3f2',
                 color: '#000',
