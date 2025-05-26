@@ -6,39 +6,65 @@ import { Form, Button, Card } from 'react-bootstrap';
 const Register = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ nombre: '', email: '', contraseña: '' });
-  const [errors, setErrors] = useState({
-    general: '',
+
+  // Renombramos "avatar" a "avatarBase64" para que coincida con el backend
+  const [form, setForm] = useState({
+    nombre: '',
     email: '',
-    password: ''
+    contraseña: '',
+    avatarBase64: ''
   });
+  const [errors, setErrors] = useState({ general: '', email: '', password: '' });
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const fullDataURL = reader.result;
+        const base64Data = fullDataURL.split('base64,')[1]; // Extrae solo el base64
+        
+        setForm(prev => ({
+          ...prev,
+          avatarBase64: base64Data, // Guarda solo "ABC123..."
+          avatarPreview: fullDataURL // Previsualización con Data URL
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    // Limpiar errores al escribir
-    if (e.target.name === 'email') setErrors(prev => ({...prev, email: ''}));
-    if (e.target.name === 'contraseña') setErrors(prev => ({...prev, password: ''}));
+    // Limpiar errores mientras escribe
+    if (e.target.name === 'email')       setErrors(prev => ({ ...prev, email: '' }));
+    if (e.target.name === 'contraseña')  setErrors(prev => ({ ...prev, password: '' }));
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
     setErrors({ general: '', email: '', password: '' });
-  
-    const result = await register(form);
-    
+
+    // 2. Crear payload con estructura correcta para el backend
+    const payload = {
+      nombre: form.nombre,
+      email: form.email,
+      contraseña: form.contraseña,
+      avatarBase64: form.avatarBase64 // ✅ Usar directamente
+    };
+
+
+    // 4. Llamar al servicio de registro con datos estructurados
+    const result = await register(payload);
+
+    // 5. Resto de la lógica...
     if (result.success) {
       navigate('/inicio');
     } else {
       if (result.code === 'email_existente') {
-        setErrors({
-          email: result.message,
-          general: ''
-        });
+        setErrors({ email: result.message, general: '' });
       } else {
-        setErrors({
-          general: result.message || 'Error en el registro',
-          email: ''
-        });
+        setErrors({ general: result.message || 'Error en el registro', email: '' });
       }
     }
   };
@@ -83,6 +109,32 @@ const Register = () => {
             )}
 
             <Form onSubmit={handleSubmit}>
+              {/* Avatar */}
+              <Form.Group className="mb-3">
+                <Form.Label>Avatar</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  style={{ borderRadius: '8px' }}
+                />
+                {form.avatarPreview && (
+                  <div className="mt-2 text-center">
+                    <img 
+                      src={form.avatarPreview}
+                      alt="Previsualización"
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
+                )}
+              </Form.Group>
+
+              {/* Nombre */}
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -95,6 +147,7 @@ const Register = () => {
                 />
               </Form.Group>
 
+              {/* Email */}
               <Form.Group className="mb-3">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
@@ -111,6 +164,7 @@ const Register = () => {
                 </Form.Control.Feedback>
               </Form.Group>
 
+              {/* Contraseña */}
               <Form.Group className="mb-3">
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control

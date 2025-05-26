@@ -1,0 +1,3329 @@
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\assets\react.svg ---
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\components\PrivateRoute.jsx ---
+
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
+const PrivateRoute = ({ allowedRoles }) => {
+  const { user } = useAuth();
+  
+  if (!user) return <Navigate to="/login" replace />;
+  if (allowedRoles && !allowedRoles.includes(user.rol)) {
+    return <Navigate to="/inicio" replace />;
+  }
+  return <Outlet />;
+};
+
+export default PrivateRoute;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\components\Sidebar.jsx ---
+
+import React, { useState, useEffect } from 'react';
+import { Nav, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import {
+  FaHome,
+  FaUser,
+  FaUsers,
+  FaSignOutAlt,
+  FaChevronLeft,
+  FaChevronRight,
+  FaBuilding,
+  FaUsersCog,
+  FaFutbol,
+  FaChartBar,
+} from 'react-icons/fa';
+
+const Sidebar = ({ onToggle }) => {
+  const { user, logout } = useAuth();
+  const location = useLocation();
+  const [open, setOpen] = useState(true);
+
+  const sidebarWidth = open ? 200 : 60;
+
+  useEffect(() => {
+    if (onToggle) onToggle(sidebarWidth);
+  }, [open]);
+
+  const backgroundStyles = {
+    gradient: {
+      background: 'linear-gradient(to bottom, #780000 0%, #669bbc 100%)',
+    },
+  };
+
+  const linkItems = [
+    { to: '/inicio', icon: <FaHome />, label: 'Inicio' },
+    { to: '/profile', icon: <FaUser />, label: 'Perfil' },
+    ...(user?.rol === 'Admin' 
+      ? [{ to: '/users', icon: <FaUsers />, label: 'Usuarios' }] 
+      : []),
+    ...(['Admin', 'GestorClub'].includes(user?.rol) 
+      ? [{ to: '/club', icon: <FaBuilding />, label: 'Clubes' }] 
+      : []),
+    { to: '/equipo', icon: <FaUsersCog />, label: 'Equipos' },
+    { to: '/partidos', icon: <FaFutbol />, label: 'Partidos' },
+    { to: '/estadisticas', icon: <FaChartBar />, label: 'Estadísticas' },
+  ];
+
+  return (
+    <div
+      style={{
+        width: sidebarWidth,
+        transition: 'width 0.3s ease',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        borderTopRightRadius: '10px',
+        borderBottomRightRadius: '10px',
+        ...backgroundStyles.gradient,
+      }}
+      className="position-fixed text-white"
+    >
+      {/* Toggle */}
+      <div>
+        <button
+          className="btn btn-sm btn-light m-2"
+          onClick={() => setOpen(!open)}
+          style={{
+            borderRadius: '50%',
+            backgroundColor: '#f4f3f2',
+            border: 'none',
+            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.2)',
+          }}
+        >
+          {open ? <FaChevronLeft /> : <FaChevronRight />}
+        </button>
+
+        <Nav className="flex-column mt-3">
+          {linkItems.map(({ to, icon, label }) => {
+            const active = to && location.pathname === to;
+            const baseStyles = {
+              gap: '10px',
+              fontWeight: active ? '600' : '500',
+              color: active ? '#000' : '#fff',
+              backgroundColor: active ? '#f4f3f2' : 'transparent',
+              transition: 'all 0.3s ease',
+              cursor: to ? 'pointer' : 'default',
+            };
+
+            const hoverStyles = `
+              .sidebar-link:hover {
+                background-color: #f4f3f2 !important;
+                color: black !important;
+              }
+            `;
+
+            const link = to ? (
+              <Nav.Link
+                as={Link}
+                to={to}
+                className="d-flex align-items-center px-3 py-2 my-1 rounded sidebar-link"
+                style={baseStyles}
+              >
+                {icon}
+                {open && label}
+              </Nav.Link>
+            ) : (
+              <div
+                className="d-flex align-items-center px-3 py-2 my-1 rounded sidebar-link"
+                style={baseStyles}
+              >
+                {icon}
+                {open && label}
+              </div>
+            );
+
+            return (
+              <React.Fragment key={label}>
+                <style>{hoverStyles}</style>
+                {open ? (
+                  link
+                ) : (
+                  <OverlayTrigger
+                    placement="right"
+                    overlay={<Tooltip id={`tooltip-${label}`}>{label}</Tooltip>}
+                  >
+                    <div>{link}</div>
+                  </OverlayTrigger>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </Nav>
+      </div>
+
+      {/* Logout */}
+      {user && (
+        <div className="mb-3">
+          <style>{`
+            .logout-link:hover {
+              background-color: #f4f3f2 !important;
+              color: black !important;
+            }
+          `}</style>
+          <OverlayTrigger
+            placement="right"
+            overlay={<Tooltip id="tooltip-logout">Cerrar sesión</Tooltip>}
+          >
+            <Nav.Link
+              onClick={logout}
+              className="d-flex align-items-center px-3 py-2 rounded mx-2 logout-link"
+              style={{
+                gap: '10px',
+                color: 'black',
+                fontWeight: '500',
+                transition: 'all 0.3s ease',
+              }}
+            >
+              <FaSignOutAlt />
+              {open && <span style={{ color: 'black' }}>Cerrar Sesión</span>}
+            </Nav.Link>
+          </OverlayTrigger>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Sidebar;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\context\AuthContext.jsx ---
+
+import { createContext, useContext, useState } from 'react';
+import { login as loginReq, register as registerReq } from '../services/authService';
+import { useNavigate } from 'react-router-dom';
+
+const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  const login = async ({ email, contraseña }) => {
+    try {
+      const { token, usuario } = await loginReq(email, contraseña);
+
+      // Guardar token
+      localStorage.setItem('token', token);
+
+      // Mapear avatarBase64 → avatar Data‑URL
+      const avatarDataUrl = usuario.avatarBase64
+        ? `data:image/png;base64,${usuario.avatarBase64}`
+        : null;
+
+      // Actualizar estado de usuario
+      setUser({
+        idUsuario: usuario.idUsuario,
+        nombre: usuario.nombre,
+        email: usuario.email,
+        rol: usuario.rol,
+        fechaRegistro: usuario.fechaRegistro,
+        avatar: avatarDataUrl
+      });
+
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Error de conexión',
+        code: error.response?.data?.code || 'unknown_error'
+      };
+    }
+  };
+
+  const register = async ({ nombre, email, contraseña, avatarBase64 }) => {
+    try {
+
+      const { token, usuario } = await registerReq({
+        nombre,
+        email,
+        contraseña,
+        avatarBase64
+      });
+
+      // Guardar token
+      localStorage.setItem('token', token);
+
+      // Mapear avatarBase64 → avatar Data‑URL
+      const avatarDataUrl = usuario.avatarBase64
+        ? `data:image/png;base64,${usuario.avatarBase64}`
+        : null;
+
+      // Actualizar estado de usuario
+      setUser({
+        idUsuario: usuario.idUsuario,
+        nombre: usuario.nombre,
+        email: usuario.email,
+        rol: usuario.rol,
+        fechaRegistro: usuario.fechaRegistro,
+        avatar: avatarDataUrl
+      });
+
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.response?.data?.message || 'Error en el registro',
+        code: error.response?.data?.code || 'registration_failed'
+      };
+    }
+  };
+
+  const updateAvatar = newDataUrl => {
+    setUser(prev => ({
+      ...prev,
+      avatar: newDataUrl
+    }));
+  };
+
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+    navigate('/login');
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{ user, login, register, logout, updateAvatar }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\ClubForm.jsx ---
+
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Container, Spinner, Alert, Table, Row, Col } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import {
+  getClubById,
+  createClub,
+  updateClub,
+  findUserByEmail,
+  assignGestor,
+  removeGestor,
+} from '../services/clubService';
+
+const ClubForm = () => {
+  const { user } = useAuth();
+  const { id } = useParams();
+  const isEditing = Boolean(id);
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    nombre: '',
+    ciudad: '',
+    fechaCreacionClub: '',
+  });
+  const [gestorEmail, setGestorEmail] = useState('');
+  const [gestores, setGestores] = useState([]);
+  const [loading, setLoading] = useState(isEditing);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    if (!isEditing) return;
+    (async () => {
+      try {
+        const data = await getClubById(id);
+        setForm({
+          nombre: data.nombre,
+          ciudad: data.ciudad,
+          fechaCreacionClub: data.fechaCreacionClub,
+        });
+        setGestores(data.gestores || []);
+      } catch (err) {
+        setError('Error al cargar el club');
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [id, isEditing]);
+
+  const handleChange = e => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError(''); setSuccess('');
+    setSaving(true);
+
+    try {
+      if (isEditing) {
+        await updateClub(id, form);
+        setSuccess('Club actualizado correctamente');
+      } else {
+        await createClub(form);
+        setSuccess('Club creado correctamente');
+        navigate('/club');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Error guardando el club');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleAddGestor = async () => {
+    setError(''); setSuccess('');
+    if (!gestorEmail) return setError('Introduce un email');
+    try {
+      const u = await findUserByEmail(gestorEmail);
+      if (u.rol !== 'GestorClub') {
+        return setError('Solo puedes asignar gestores de club');
+      }
+      await assignGestor(id, u.idUsuario);
+      setGestores([...gestores, { idUsuario: u.idUsuario, nombre: u.nombre }]);
+      setGestorEmail('');
+      setSuccess('Gestor asignado correctamente');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Error asignando gestor');
+    }
+  };
+
+  const handleDeleteGestor = async (idUsuario) => {
+    if (!window.confirm("¿Eliminar gestor del club?")) return;
+
+    try {
+      await removeGestor(id, idUsuario); 
+      setGestores(gestores.filter(g => g.idUsuario !== idUsuario));
+      setSuccess('Gestor eliminado correctamente');
+    } catch (err) {
+      setError('Error eliminando gestor');
+    }
+  };
+
+  if (loading) {
+    return (
+      <Container className="text-center mt-5">
+        <Spinner animation="border" />
+        <p>Cargando datos...</p>
+      </Container>
+    );
+  }
+
+  return (
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        {isEditing ? 'Editar Club' : 'Nuevo Club'}
+      </h2>
+
+      <div
+        className="p-4"
+        style={{
+          background: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+        }}
+      >
+
+        <Form onSubmit={handleSubmit}>
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Group controlId="formNombre">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  name="nombre"
+                  value={form.nombre}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+            
+            <Col md={6}>
+              <Form.Group controlId="formCiudad">
+                <Form.Label>Ciudad</Form.Label>
+                <Form.Control
+                  name="ciudad"
+                  value={form.ciudad}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Row className="mb-4">
+            <Col md={6}>
+              <Form.Group controlId="formFecha">
+                <Form.Label>Fecha de Fundación</Form.Label>
+                <Form.Control
+                  name="fechaCreacionClub"
+                  type="date"
+                  value={form.fechaCreacionClub}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <div className="d-flex justify-content-end gap-3">
+            <Button
+              variant="secondary"
+              onClick={() => navigate(isEditing ? '/club' : '/club')}
+              style={{
+                backgroundColor: '#f4f3f2',
+                color: '#000',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                padding: '8px 20px'
+              }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="submit"
+              disabled={saving}
+              style={{
+                backgroundColor: '#669bbc',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                padding: '8px 25px'
+              }}
+            >
+              {saving ? 'Guardando...' : 'Guardar'}
+            </Button>
+          </div>
+        </Form>
+        <br></br>
+        {error && <Alert variant="danger" className="rounded-lg">{error}</Alert>}
+        {success && <Alert variant="success" className="rounded-lg">{success}</Alert>}
+
+        {isEditing && user.rol === 'Admin' && (
+          <>
+            <hr className="my-5" />
+
+            <div className="mt-4">
+              <h4 className="mb-4">Gestores Vinculados</h4>
+              
+              {gestores.length === 0 ? (
+                <p className="text-muted">No hay gestores asignados</p>
+              ) : (
+                <Table hover className="rounded-lg overflow-hidden">
+                  <thead style={{ backgroundColor: '#669bbc', color: 'white' }}>
+                    <tr>
+                      <th>Nombre</th>
+                      <th className="text-end">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {gestores.map(g => (
+                      <tr key={g.idUsuario}>
+                        <td>{g.nombre}</td>
+                        <td className="text-end">
+                          <Button 
+                            variant="danger" 
+                            size="sm"
+                            onClick={() => handleDeleteGestor(g.idUsuario)}
+                            style={{
+                              borderRadius: '6px',
+                              padding: '4px 12px',
+                              fontWeight: '500'
+                            }}
+                          >
+                            X
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              )}
+
+              <div className="mt-4 p-3" style={{ backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
+                <Row className="g-3 align-items-center">
+                  <Col>
+                    <Form.Control
+                      placeholder="Email del gestor"
+                      value={gestorEmail}
+                      onChange={e => setGestorEmail(e.target.value)}
+                      style={{ borderRadius: '8px' }}
+                    />
+                  </Col>
+                  <Col xs="auto">
+                    <Button 
+                      onClick={handleAddGestor}
+                      style={{
+                        backgroundColor: '#669bbc',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '8px 20px',
+                        fontWeight: '600'
+                      }}
+                    >
+                      Añadir Gestor
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ClubForm;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Clubs.jsx ---
+
+import React, { useEffect, useState } from 'react';
+import { Table, Button, Container, Spinner, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getClubs, deleteClub } from '../services/clubService';
+
+const Clubs = () => {
+  const { user } = useAuth();
+  const [clubs, setClubs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const loadClubs = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const data = await getClubs(user.rol, user.idUsuario);
+      setClubs(data);
+    } catch (error) {
+      setError('Error cargando clubes');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user) loadClubs();
+  }, [user]);
+
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Eliminar este club?')) {
+      try {
+        await deleteClub(id);
+        loadClubs();
+      } catch (error) {
+        setError('Error eliminando club');
+      }
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', options);
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" variant="primary" />
+        <p>Cargando clubes...</p>
+      </div>
+    );
+  }
+
+  return (
+    <Container className="mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        Gestión de Clubes
+      </h2>
+
+      {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
+        <div className="text-center mt-4">
+          <Button
+            onClick={() => navigate('/club/new')}
+            style={{
+              backgroundColor: '#669bbc',
+              border: 'none',
+              borderRadius: '8px',
+              fontWeight: '600',
+              padding: '10px 25px'
+            }}
+          >
+            Nuevo Club
+          </Button>
+        </div>
+      )}
+
+      {error ? (
+        <Alert variant="danger" className="text-center">
+          {error} <Button variant="link" onClick={loadClubs}>Reintentar</Button>
+        </Alert>
+      ) : clubs.length === 0 ? (
+        <div className="text-center">No se encontraron clubes</div>
+      ) : (
+        <div
+          style={{
+            background: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+            overflowX: 'auto',
+          }}
+        >
+          <style>{`
+            .btn-edit:hover { background-color: #f4f3f2 !important; color: black !important; }
+            .btn-delete:hover { background-color: #f4f3f2 !important; color: black !important; }
+          `}</style>
+
+          <Table responsive striped hover className="mb-0">
+            <thead>
+              <tr style={{ backgroundColor: '#669bbc', color: 'white' }}>
+                {user.rol === 'Admin' && <th>ID</th>}
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Fundación</th>
+                {user.rol === 'Admin' && <th>Gestores</th>}
+                <th className="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clubs.map(club => (
+                <tr key={club.idClub}>
+                  {user.rol === 'Admin' && <td>{club.idClub}</td>}
+                  <td>{club.nombre}</td>
+                  <td>{club.ciudad}</td>
+                  <td>{formatDate(club.fechaCreacionClub)}</td>
+                  {user.rol === 'Admin' && (
+                    <td>
+                      {club.gestores?.length > 0
+                        ? club.gestores.map(g => `${g.idUsuario}.- ` + g.nombre ).join(', ')
+                        : '-'}
+                    </td>
+                  )}
+                  <td className="text-center">
+                    <Button
+                      size="sm"
+                      className="btn-edit me-2"
+                      style={{
+                        backgroundColor: '#669bbc',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontWeight: '500',
+                      }}
+                      onClick={() => navigate(`/club/${club.idClub}`)}
+                    >
+                      Editar
+                    </Button>
+                    {user.rol === 'Admin' && (
+                      <Button
+                        size="sm"
+                        className="btn-delete"
+                        style={{
+                          backgroundColor: '#780000',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontWeight: '500',
+                        }}
+                        onClick={() => handleDelete(club.idClub)}
+                      >
+                        Eliminar
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
+    </Container>
+  );
+};
+
+export default Clubs;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\EquipoForm.jsx ---
+
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Container, Alert, Table, Row, Col, Spinner } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getEquipoById, createEquipo, updateEquipo, assignEntrenadorByEmail, removeEntrenador, getClubesDisponibles } from '../services/equipoService';
+import { findUserByEmail } from '../services/clubService';
+
+const EquipoForm = () => {
+  const { user } = useAuth();
+  const { id } = useParams();
+  const isEditing = Boolean(id);
+  const navigate = useNavigate();
+
+  const [form, setForm] = useState({
+    nombre: '',
+    categoria: '',
+    competicion: '',
+    idClub: ''
+  });
+  
+  const [entrenadorEmail, setEntrenadorEmail] = useState('');
+  const [entrenadores, setEntrenadores] = useState([]);
+  const [clubes, setClubes] = useState([]);
+  const [loading, setLoading] = useState(isEditing);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    const loadData = async () => {
+      if (isEditing) {
+        try {
+          const data = await getEquipoById(id);
+          
+          setForm({
+            nombre: data.nombre || '',
+            categoria: data.categoria || '',
+            competicion: data.competicion || '',
+            idClub: (data.club && data.club.idClub) ? data.club.idClub : ''
+          });
+
+          setEntrenadores(Array.isArray(data.entrenadores) ? data.entrenadores : []);
+          
+        } catch (err) {
+          setError('Error cargando equipo');
+        }
+      }
+      
+      if (user.rol === 'GestorClub' || user.rol === 'Admin') {
+        try {
+          const clubesData = await getClubesDisponibles(user.idUsuario);
+          setClubes(Array.isArray(clubesData) ? clubesData : []);
+        } catch (err) {
+          setError('Error cargando clubes');
+        }
+      }
+      setLoading(false);
+    };
+    loadData();
+  }, [id, user]);
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    
+    try {
+      if (isEditing) {
+        await updateEquipo(id, form);
+        setSuccess('Equipo actualizado correctamente');
+      } else {
+        await createEquipo(form);
+        setSuccess('Equipo creado correctamente');
+        navigate('/equipo');
+      }
+    } catch (err) {
+      setError(err.message || 'Error guardando equipo');
+    }
+  };
+
+  const handleAddEntrenador = async () => {
+    if (!entrenadorEmail) return setError('Introduce un email');
+    try {
+      const usuario = await findUserByEmail(entrenadorEmail);
+      if (usuario.rol !== 'Entrenador') throw new Error('El usuario no es entrenador');
+      await assignEntrenadorByEmail(id, entrenadorEmail);
+      setEntrenadores([...entrenadores, usuario]);
+      setEntrenadorEmail('');
+      setSuccess('Entrenador asignado');
+    } catch (err) {
+      setError(err.message || 'Error asignando entrenador');
+    }
+  };
+
+  const handleRemoveEntrenador = async (idUsuario) => {
+    try {
+      await removeEntrenador(id, idUsuario);
+      setEntrenadores(entrenadores.filter(e => e.idUsuario !== idUsuario));
+      setSuccess('Entrenador eliminado');
+    } catch (err) {
+      setError('Error eliminando entrenador');
+    }
+  };
+
+  if (loading) return (
+    <div className="text-center mt-5">
+      <Spinner animation="border" variant="primary" />
+      <p>Cargando...</p>
+    </div>
+  );
+
+  return (
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        {isEditing ? 'Editar Equipo' : 'Nuevo Equipo'}
+      </h2>
+
+      <div className="p-4" style={{ 
+        background: 'white', 
+        borderRadius: '12px', 
+        boxShadow: '0 4px 16px rgba(0,0,0,0.1)' 
+      }}>
+        <Form onSubmit={handleSubmit}>
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Group controlId="nombre">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  name="nombre"
+                  value={form.nombre}
+                  onChange={(e) => setForm({...form, nombre: e.target.value})}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+            <Col md={6}>
+              <Form.Group controlId="categoria">
+                <Form.Label>Categoría</Form.Label>
+                <Form.Control
+                  name="categoria"
+                  value={form.categoria}
+                  onChange={(e) => setForm({...form, categoria: e.target.value})}
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Group controlId="competicion">
+                <Form.Label>Competición</Form.Label>
+                <Form.Control
+                  name="competicion"
+                  value={form.competicion}
+                  onChange={(e) => setForm({...form, competicion: e.target.value})}
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+            {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
+              <Col md={6}>
+                <Form.Group controlId="club">
+                  <Form.Label>Club</Form.Label>
+                  <Form.Select
+                    value={form.idClub}
+                    onChange={(e) => setForm({...form, idClub: e.target.value})}
+                    style={{ borderRadius: '8px' }}
+                  >
+                    <option value="">Seleccionar club</option>
+                    {Array.isArray(clubes) && clubes.map(club => (
+                      <option key={club.idClub} value={club.idClub}>
+                        {club.nombre}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            )}
+          </Row>
+
+          <div className="d-flex justify-content-end gap-3">
+            <Button
+              variant="secondary"
+              onClick={() => navigate(isEditing ? '/equipo' : '/equipo')}
+              style={{
+                backgroundColor: '#f4f3f2',
+                color: '#000',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                padding: '8px 20px'
+              }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: '#669bbc',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                padding: '8px 25px'
+              }}
+            >
+              {isEditing ? 'Actualizar' : 'Guardar'}
+            </Button>
+          </div>
+        </Form>
+
+        {isEditing && (user.rol === 'Admin' || user.rol === 'GestorClub') && (
+          <>
+            <hr className="my-5" />
+            <div className="mt-4">
+              <h4>Entrenadores Asignados</h4>
+              {Array.isArray(entrenadores) && entrenadores.length === 0 ? (
+                <p className="text-muted">No hay entrenadores asignados</p>
+              ) : (
+                <Table hover className="rounded-lg overflow-hidden mt-3">
+                  <thead style={{ backgroundColor: '#669bbc', color: 'white' }}>
+                    <tr>
+                      <th>Nombre</th>
+                      <th className="text-end">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Array.isArray(entrenadores) && entrenadores.map(entrenador => (
+                      <tr key={entrenador.idUsuario}>
+                        <td>{entrenador.nombre}</td>
+                        <td className="text-end">
+                          <Button 
+                            variant="danger" 
+                            size="sm"
+                            onClick={() => handleRemoveEntrenador(entrenador.idUsuario)}
+                            style={{
+                              borderRadius: '6px',
+                              padding: '4px 12px',
+                              fontWeight: '500'
+                            }}
+                          >
+                            X
+                          </Button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              )}
+
+              <div className="mt-4 p-3" style={{ backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
+                <Row className="g-3 align-items-center">
+                  <Col>
+                    <Form.Control
+                      placeholder="Email del entrenador"
+                      value={entrenadorEmail}
+                      onChange={e => setEntrenadorEmail(e.target.value)}
+                      style={{ borderRadius: '8px' }}
+                    />
+                  </Col>
+                  <Col xs="auto">
+                    <Button 
+                      onClick={handleAddEntrenador}
+                      style={{
+                        backgroundColor: '#669bbc',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '8px 20px',
+                        fontWeight: '600'
+                      }}
+                    >
+                      Añadir Entrenador
+                    </Button>
+                  </Col>
+                </Row>
+              </div>
+            </div>
+          </>
+        )}
+
+        {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+        {success && <Alert variant="success" className="mt-3">{success}</Alert>}
+      </div>
+    </div>
+  );
+};
+
+export default EquipoForm;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Equipos.jsx ---
+
+import React, { useEffect, useState } from 'react';
+import { Table, Button, Container, Spinner, Alert, Form, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getEquipos, deleteEquipo } from '../services/equipoService';
+import { getClubesDisponibles } from '../services/equipoService';
+
+const Equipos = () => {
+  const { user } = useAuth();
+  const [equipos, setEquipos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const [clubes, setClubes] = useState([]);
+  const [selectedClub, setSelectedClub] = useState('');
+
+  const loadEquipos = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      const data = await getEquipos(user.rol, user.idUsuario);
+      setEquipos(Array.isArray(data) ? data : []);
+    } catch (err) {
+      setError('Error cargando equipos');
+      setEquipos([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadClubes = async () => {
+    try {
+      const clubesData = await getClubesDisponibles(user.idUsuario);
+      setClubes(Array.isArray(clubesData) ? clubesData : []);
+    } catch (err) {
+      setError('Error cargando clubes');
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      loadEquipos();
+      if (['Admin', 'GestorClub'].includes(user.rol)) {
+        loadClubes();
+      }
+    }
+  }, [user]);
+
+  const handleDelete = async (id) => {
+    if (window.confirm('¿Eliminar este equipo?')) {
+      try {
+        await deleteEquipo(id);
+        loadEquipos();
+      } catch (error) {
+        setError('Error eliminando equipo');
+      }
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('es-ES', options);
+  };
+
+  const filteredEquipos = selectedClub 
+    ? equipos.filter(e => e.idClub === Number(selectedClub))
+    : equipos;
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" variant="primary" />
+        <p>Cargando equipos...</p>
+      </div>
+    );
+  }
+
+  return (
+    <Container className="mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        Gestión de Equipos
+      </h2>
+
+      <div className="mt-4">
+        <Row className="justify-content-center align-items-center g-3">
+          {['Admin', 'GestorClub'].includes(user.rol) && (
+            <Col xs={12} md={6} lg={4}>
+              <Form.Group controlId="filterClub">
+                <Form.Label className="fw-bold">Filtrar por club:</Form.Label>
+                <Form.Select
+                  value={selectedClub}
+                  onChange={(e) => setSelectedClub(e.target.value)}
+                  style={{
+                    borderRadius: '8px',
+                    border: '2px solid #669bbc',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="">Todos los clubes</option>
+                  {clubes.map(club => (
+                    <option key={club.idClub} value={club.idClub}>
+                      {club.nombre}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          )}
+          <Col xs={12} md={6} lg={4}>
+            <Button
+              onClick={() => navigate('/equipo/new')}
+              style={{
+                backgroundColor: '#669bbc',
+                border: 'none',
+                borderRadius: '8px',
+                fontWeight: '600',
+                padding: '10px 25px',
+                width: '100%'
+              }}
+            >
+              Nuevo Equipo
+            </Button>
+          </Col>
+        </Row>
+      </div>
+
+      {error ? (
+        <Alert variant="danger" className="text-center">
+          {error} <Button variant="link" onClick={loadEquipos}>Reintentar</Button>
+        </Alert>
+      ) : filteredEquipos.length === 0 ? (
+        <div className="text-center">No se encontraron equipos</div>
+      ) : (
+        <div style={{
+          background: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+          overflowX: 'auto',
+          marginTop: '20px'
+        }}>
+          <Table responsive striped hover className="mb-0">
+            <thead style={{ backgroundColor: '#669bbc', color: 'white' }}>
+              <tr>
+                {user.rol === 'Admin' && <th>Id</th>}                
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Competición</th>
+                <th>Club</th>
+                {(user.rol === 'Admin' || user.rol === 'GestorClub') && <th>Entrenadores</th>}
+                <th>Fecha Creación</th>
+                <th className="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEquipos.map(equipo => (
+                <tr key={equipo.idEquipo}>
+                  {user.rol === 'Admin' && <td>{equipo.idEquipo}</td>}
+                  <td>{equipo.nombre}</td>
+                  <td>{equipo.categoria}</td>
+                  <td>{equipo.competicion}</td>
+                  <td>{equipo.clubNombre || '-'}</td>
+                 {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
+                   <td>
+                     {(equipo.entrenadores ?? [])
+                       .map(u => u.nombre || u.email)
+                       .join(', ') || '-'}
+                   </td>
+                 )}
+                  <td>{formatDate(equipo.fechaCreacionEquipo)}</td>
+                  <td className="text-center">
+                    <Button
+                      size="sm"
+                      className="me-2"
+                      style={{
+                        backgroundColor: '#669bbc',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontWeight: '500',
+                      }}
+                      onClick={() => navigate(`/equipo/${equipo.idEquipo}`)}
+                    >
+                      Editar
+                    </Button>
+                    {(user.rol === 'Admin') && (
+                      <Button
+                        size="sm"
+                        style={{
+                          backgroundColor: '#780000',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontWeight: '500',
+                        }}
+                        onClick={() => handleDelete(equipo.idEquipo)}
+                      >
+                        Eliminar
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
+    </Container>
+  );
+};
+
+export default Equipos;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Estadisticas.jsx ---
+
+import React, { useState, useEffect } from 'react';
+import { Container, Form, Button, Alert, Spinner, Row, Col, Card } from 'react-bootstrap';
+import { useAuth } from '../context/AuthContext';
+import { getEquiposDisponibles, getPartidos } from '../services/partidoService';
+
+const Estadisticas = () => {
+  const { user } = useAuth();
+  const [equipos, setEquipos] = useState([]);
+  const [partidos, setPartidos] = useState([]);
+  const [selectedEquipo, setSelectedEquipo] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [stats, setStats] = useState(null);
+  const [calculando, setCalculando] = useState(false);
+
+  // Cargar datos iniciales
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [equiposRes, partidosRes] = await Promise.all([
+          getEquiposDisponibles(),
+          getPartidos()
+        ]);
+        
+        setEquipos(equiposRes.data || []);
+        setPartidos(partidosRes.data || []);
+      } catch (err) {
+        setError('Error cargando datos');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    setStats(null);
+    setError('');
+    }, [selectedEquipo]);
+
+  const calcularEstadisticas = () => {
+    setCalculando(true);
+    setError('');
+    
+    try {
+      // Filtrar partidos del equipo seleccionado
+      const partidosEquipo = partidos.filter(p => 
+        p.idEquipoPropio === Number(selectedEquipo)
+      );
+
+      if (partidosEquipo.length === 0) {
+        throw new Error('El equipo no tiene partidos registrados');
+      }
+
+      let totalGolesMarcados = 0;
+      let totalGolesRecibidos = 0;
+      let partidosConResultado = 0;
+
+      partidosEquipo.forEach(p => {
+        if (p.resultado) {
+          const [golesLocal, golesVisitante] = p.resultado
+            .split('-')
+            .map(Number);
+
+          if (p.esLocal) {
+            totalGolesMarcados += golesLocal;
+            totalGolesRecibidos += golesVisitante;
+          } else {
+            totalGolesMarcados += golesVisitante;
+            totalGolesRecibidos += golesLocal;
+          }
+          
+          partidosConResultado++;
+        }
+      });
+
+      if (partidosConResultado === 0) {
+        throw new Error('No hay partidos con resultados registrados');
+      }
+
+      setStats({
+        mediaMarcados: totalGolesMarcados / partidosConResultado,
+        mediaRecibidos: totalGolesRecibidos / partidosConResultado,
+        totalPartidos: partidosConResultado
+      });
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setCalculando(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" variant="primary" />
+        <p>Cargando datos...</p>
+      </div>
+    );
+  }
+
+  return (
+    <Container className="mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        Estadísticas de Equipos
+      </h2>
+
+      <Row className="justify-content-center mb-4">
+        <Col md={6}>
+          <Form.Group>
+            <Form.Label className="fw-bold">Seleccionar equipo:</Form.Label>
+            <Form.Select
+              value={selectedEquipo}
+              onChange={(e) => setSelectedEquipo(e.target.value)}
+              style={{
+                borderRadius: '8px',
+                border: '2px solid #669bbc',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="">Seleccione un equipo</option>
+              {equipos.map(equipo => (
+                <option key={equipo.idEquipo} value={equipo.idEquipo}>
+                  {equipo.nombre}
+                </option>
+              ))}
+            </Form.Select>
+          </Form.Group>
+        </Col>
+      </Row>
+
+      <div className="text-center mb-4">
+        <Button
+          onClick={calcularEstadisticas}
+          disabled={!selectedEquipo || calculando}
+          style={{
+            backgroundColor: '#669bbc',
+            border: 'none',
+            borderRadius: '8px',
+            fontWeight: '600',
+            padding: '10px 25px',
+            width: '200px'
+          }}
+        >
+          {calculando ? (
+            <>
+              <Spinner animation="border" size="sm" /> Calculando...
+            </>
+          ) : (
+            'Calcular Estadísticas'
+          )}
+        </Button>
+      </div>
+
+      {error && <Alert variant="danger" className="text-center">{error}</Alert>}
+
+      {stats && (
+        <Row className="justify-content-center">
+          <Col md={8}>
+            <Card style={{ 
+              borderRadius: '12px', 
+              boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
+            }}>
+              <Card.Body className="text-center">
+                <h4 className="mb-4">Resultados Estadísticos</h4>
+                
+                <Row>
+                  <Col>
+                    <div className="mb-3">
+                      <h5>Media de goles a favor</h5>
+                      <div style={{ fontSize: '2rem', color: '#780000' }}>
+                        {stats.mediaMarcados.toFixed(2)}
+                      </div>
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="mb-3">
+                      <h5>Media de goles en contra</h5>
+                      <div style={{ fontSize: '2rem', color: '#780000' }}>
+                        {stats.mediaRecibidos.toFixed(2)}
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+                
+                <div className="mt-3">
+                  <p className="text-muted">
+                    Análisis de {stats.totalPartidos} partidos registrados
+                  </p>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      )}
+    </Container>
+  );
+};
+
+export default Estadisticas;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Inicio.jsx ---
+
+import React from 'react';
+import { Container, Card, Row, Col } from 'react-bootstrap';
+
+const Inicio = () => (
+  <Container
+    fluid
+    className="d-flex flex-column align-items-center justify-content-start py-5"
+    style={{ backgroundColor: '#f4f3f2', minHeight: '100vh' }}
+  >
+    <img
+      src="/isotipo_sin_fondo.png"
+      alt="HandballStatsPro"
+      style={{
+        width: '280px',
+        marginBottom: '40px',
+        filter: 'drop-shadow(3px 5px 8px rgba(0,0,0,0.25))',
+      }}
+    />
+
+    <h1 className="mb-4 text-center" style={{ color: '#780000' }}>
+      Bienvenido a HandballStats Pro
+    </h1>
+
+    <Row className="w-100 justify-content-center px-3" style={{ maxWidth: '1200px' }}>
+      <Col md={6} className="mb-4">
+        <Card style={{ borderLeft: '6px solid #669bbc', borderRadius: '16px' }}>
+          <Card.Body>
+            <Card.Title style={{ color: '#669bbc' }}>¿Qué es HandballStatsPro?</Card.Title>
+            <Card.Text>
+              Nuestra plataforma representa una innovación en el análisis del balonmano, centrada
+              en capturar datos específicos de cada fase del juego, más allá de las estadísticas básicas.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+
+      <Col md={6} className="mb-4">
+        <Card style={{ borderLeft: '6px solid #780000', borderRadius: '16px' }}>
+          <Card.Body>
+            <Card.Title style={{ color: '#780000' }}>¿Por qué es diferente?</Card.Title>
+            <Card.Text>
+              A diferencia de otras apps deportivas, HandballStats Pro analiza con detalle el
+              ataque, la defensa, los contraataques y los repliegues defensivos. Una herramienta
+              hecha para quienes buscan profundidad táctica.
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+
+      <Col md={12}>
+        <Card style={{ borderLeft: '6px solid #669bbc', borderRadius: '16px' }}>
+          <Card.Body>
+            <Card.Title style={{ color: '#669bbc' }}>¿Qué permite hacer?</Card.Title>
+            <Card.Text>
+              Calcula en tiempo real la eficacia y frecuencia de cada fase del juego, lo que
+              facilita la toma de decisiones estratégicas basadas en datos reales y actuales.
+              ¡Explora el menú lateral y comienza tu análisis avanzado hoy!
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
+);
+
+export default Inicio;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Login.jsx ---
+
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { Form, Button, Card } from 'react-bootstrap';
+
+const Login = () => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: '', contraseña: '' });
+  const [error, setError] = useState({ message: '', type: '' });
+
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError({ message: '', type: '' });
+    
+    const { success, message, code } = await login(form);
+    
+    if (success) {
+      navigate('/inicio');
+    } else {
+      setError({
+        message: code === 'bad_credentials' 
+          ? 'Email o contraseña incorrectos' 
+          : message,
+        type: code
+      });
+    }
+  };
+
+  return (
+    <div
+      className="d-flex vh-100"
+      style={{
+        background: 'linear-gradient(90deg, #669bbc 0%, #780000 100%)',
+      }}
+    >
+      <div className="w-50 d-flex align-items-center justify-content-center">
+        <img
+          src="/imagotipo_sin_fondo.png"
+          alt="Logo"
+          style={{
+            maxWidth: '60%',
+            filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))',
+          }}
+        />
+      </div>
+      <div className="w-50 d-flex align-items-center justify-content-center">
+        <Card
+          style={{
+            width: '80%',
+            maxWidth: '400px',
+            borderRadius: '16px',
+            background: 'rgba(255,255,255,0.9)',
+            boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+            border: 'none',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: '#780000',
+              padding: '12px 0',
+            }}
+          >
+            <h5 className="text-center text-white mb-0">Iniciar Sesión</h5>
+          </div>
+          <Card.Body>
+            {error.message && (
+              <div className={`alert ${error.type === 'validation_error' 
+                ? 'alert-warning' 
+                : 'alert-danger'} mb-3`}
+              >
+                {error.message}
+              </div>
+            )}
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  name="contraseña"
+                  type="password"
+                  value={form.contraseña}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+              <Button
+                type="submit"
+                className="w-100"
+                style={{
+                  backgroundColor: '#780000',
+                  border: 'none',
+                  padding: '10px 0',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                }}
+              >
+                Ingresar
+              </Button>
+            </Form>
+            <p className="mt-3 text-center">
+              ¿Todavía no tienes cuenta?{' '}
+              <Link
+                to="/register"
+                style={{
+                  backgroundColor: '#669bbc',
+                  padding: '6px 12px',
+                  borderRadius: '6px',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseEnter={e => (e.target.style.backgroundColor = '#546f8a')}
+                onMouseLeave={e => (e.target.style.backgroundColor = '#669bbc')}
+              >
+                Regístrate
+              </Link>
+            </p>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\PartidoForm.jsx ---
+
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Container, Alert, Row, Col, Spinner } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { createPartido, updatePartido, getPartidoById, getEquiposDisponibles } from '../services/partidoService';
+
+const PartidoForm = () => {
+  const { user } = useAuth();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const isEdit = Boolean(id);
+
+  const [form, setForm] = useState({
+    idEquipoPropio: '',
+    nombreRival: '',
+    esLocal: true,
+    fecha: '',
+    resultado: '',
+  });
+  
+  const [equipos, setEquipos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [eRes, pRes] = await Promise.all([
+          getEquiposDisponibles(),
+          isEdit ? getPartidoById(id) : Promise.resolve({ data: null })
+        ]);
+        
+        setEquipos(eRes.data || []);
+        
+        if (isEdit && pRes.data) {
+          const p = pRes.data;
+          setForm({
+            idEquipoPropio: p.idEquipoPropio,
+            nombreRival: p.nombreRival,
+            esLocal: p.esLocal,
+            fecha: p.fecha.split('T')[0],
+            resultado: p.resultado || '',
+          });
+        }
+      } catch (err) {
+        setError('Error cargando datos');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id, isEdit]);
+
+  const handleChange = e => {
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setError('');
+    setSuccess('');
+    
+    try {
+      if (isEdit) {
+        await updatePartido(id, form);
+        setSuccess('Partido actualizado correctamente');
+      } else {
+        await createPartido(form);
+        navigate('/partidos');
+      }
+    } catch (err) {
+      setError('Error guardando el partido');
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" variant="primary" />
+        <p>Cargando...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        {isEdit ? 'Editar Partido' : 'Nuevo Partido'}
+      </h2>
+
+      <div className="p-4" style={{ 
+        background: 'white', 
+        borderRadius: '12px', 
+        boxShadow: '0 4px 16px rgba(0,0,0,0.1)' 
+      }}>
+        <Form onSubmit={handleSubmit}>
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Group controlId="idEquipoPropio">
+                <Form.Label>Equipo Propio</Form.Label>
+                <Form.Select
+                  name="idEquipoPropio"
+                  value={form.idEquipoPropio}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                >
+                  <option value="">Seleccione...</option>
+                  {equipos.map(e => (
+                    <option key={e.idEquipo} value={e.idEquipo}>{e.nombre}</option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            
+            <Col md={6}>
+              <Form.Group controlId="nombreRival">
+                <Form.Label>Nombre Rival</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="nombreRival"
+                  value={form.nombreRival}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Row className="mb-3">
+            <Col md={6}>
+              <Form.Group controlId="fecha">
+                <Form.Label>Fecha</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="fecha"
+                  value={form.fecha}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+            
+            <Col md={6}>
+              <Form.Group controlId="resultado" className="mt-4">
+                <Form.Check 
+                  type="checkbox"
+                  name="esLocal"
+                  label="¿Es local?"
+                  checked={form.esLocal}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <Row className="mb-4">
+            <Col md={12}>
+              <Form.Group controlId="resultado">
+                <Form.Label>Resultado (opcional)</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="resultado"
+                  value={form.resultado}
+                  onChange={handleChange}
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+
+          <div className="d-flex justify-content-end gap-3">
+            <Button
+              variant="secondary"
+              onClick={() => navigate('/partidos')}
+              style={{
+                backgroundColor: '#f4f3f2',
+                color: '#000',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                padding: '8px 20px'
+              }}
+            >
+              Cancelar
+            </Button>
+            <Button
+              type="submit"
+              style={{
+                backgroundColor: '#669bbc',
+                borderRadius: '8px',
+                border: 'none',
+                fontWeight: '600',
+                padding: '8px 25px'
+              }}
+            >
+              {isEdit ? 'Actualizar' : 'Guardar'}
+            </Button>
+          </div>
+        </Form>
+
+        {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+        {success && <Alert variant="success" className="mt-3">{success}</Alert>}
+      </div>
+    </div>
+  );
+};
+
+export default PartidoForm;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Partidos.jsx ---
+
+import React, { useState, useEffect } from 'react';
+import { Table, Button, Spinner, Container, Alert, Form, Row, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getPartidos, deletePartido, getEquiposDisponibles } from '../services/partidoService';
+
+const Partidos = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [partidos, setPartidos] = useState([]);
+  const [equipos, setEquipos] = useState([]);
+  const [error, setError] = useState('');
+  const [selectedEquipo, setSelectedEquipo] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [pRes, eRes] = await Promise.all([getPartidos(), getEquiposDisponibles()]);
+        setPartidos(pRes.data || []);
+        setEquipos(eRes.data || []);
+      } catch (err) {
+        setError('Error cargando partidos');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleEdit = (id) => navigate(`/partidos/${id}`);
+
+  const handleDelete = async (id) => {
+    if (!window.confirm('¿Seguro que deseas eliminar este partido?')) return;
+    try {
+      await deletePartido(id);
+      setPartidos(prev => prev.filter(p => p.idPartido !== id));
+    } catch (err) {
+      setError('Error eliminando partido');
+    }
+  };
+
+  const renderNombreEquipo = (idEquipo) => {
+    const equipo = equipos.find(e => e.idEquipo === idEquipo);
+    return equipo ? equipo.nombre : '-';
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('es-ES', options);
+  };
+
+const partidosFiltrados = selectedEquipo 
+  ? partidos.filter(p => p.idEquipoPropio === Number(selectedEquipo))
+  : partidos;
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <Spinner animation="border" variant="primary" />
+        <p>Cargando partidos...</p>
+      </div>
+    );
+  }
+
+  return (
+    <Container className="mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        Gestión de Partidos
+      </h2>
+
+      <div className="mt-4">
+        <Row className="justify-content-center align-items-center g-3">
+          <Col xs={12} md={6} lg={4}>
+            <Form.Group controlId="filterEquipo">
+              <Form.Label className="fw-bold">Filtrar por equipo:</Form.Label>
+              <Form.Select
+                value={selectedEquipo}
+                onChange={(e) => setSelectedEquipo(e.target.value)}
+                style={{
+                  borderRadius: '8px',
+                  border: '2px solid #669bbc',
+                  cursor: 'pointer'
+                }}
+              >
+                <option value="">Todos los equipos</option>
+                {equipos.map(equipo => (
+                  <option key={equipo.idEquipo} value={equipo.idEquipo}>
+                    {equipo.nombre}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col xs={12} md={6} lg={4}>
+            {['Admin', 'GestorClub', 'Entrenador'].includes(user.rol) && (
+              <Button
+                onClick={() => navigate('/partidos/new')}
+                style={{
+                  backgroundColor: '#669bbc',
+                  border: 'none',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                  padding: '10px 25px',
+                  width: '100%'
+                }}
+              >
+                Nuevo Partido
+              </Button>
+            )}
+          </Col>
+        </Row>
+      </div>
+
+      {error ? (
+        <Alert variant="danger" className="text-center mt-3">
+          {error}
+        </Alert>
+      ) : partidos.length === 0 ? (
+        <div className="text-center mt-4">No se encontraron partidos</div>
+      ) : (
+        <div style={{
+          background: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+          overflowX: 'auto',
+          marginTop: '20px'
+        }}>
+          <Table responsive striped hover className="mb-0">
+            <thead style={{ backgroundColor: '#669bbc', color: 'white' }}>
+              <tr>
+                {user.rol === 'Admin' && <th>ID</th>}
+                <th>Equipo Propio</th>
+                <th>Rival</th>
+                <th>Local</th>
+                <th>Fecha</th>
+                <th>Resultado</th>
+                {user.rol === 'Admin' && <th>Fecha Registro</th>}
+                <th className="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {partidosFiltrados.map(p => (
+                <tr key={p.idPartido}>
+                  {user.rol === 'Admin' && <td>{p.idPartido}</td>}
+                  <td>{renderNombreEquipo(p.idEquipoPropio)}</td>
+                  <td>{p.nombreRival}</td>
+                  <td>{p.esLocal ? 'Sí' : 'No'}</td>
+                  <td>{formatDate(p.fecha)}</td>
+                  <td>{p.resultado || '-'}</td>
+                  {user.rol === 'Admin' && <td>{formatDate(p.fechaRegistro)}</td>}
+                  <td className="text-center">
+                    <Button
+                      size="sm"
+                      className="me-2"
+                      style={{
+                        backgroundColor: '#669bbc',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontWeight: '500',
+                      }}
+                      onClick={() => handleEdit(p.idPartido)}
+                    >
+                      Editar
+                    </Button>
+                    {['Admin', 'GestorClub'].includes(user.rol) && (
+                      <Button
+                        size="sm"
+                        style={{
+                          backgroundColor: '#780000',
+                          border: 'none',
+                          borderRadius: '6px',
+                          fontWeight: '500',
+                        }}
+                        onClick={() => handleDelete(p.idPartido)}
+                      >
+                        Eliminar
+                      </Button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
+    </Container>
+  );
+};
+
+export default Partidos;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Profile.jsx ---
+
+import React, { useEffect, useState } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { getCurrentUser, getUserById, updateUser } from '../services/userService';
+
+const Profile = () => {
+  const { user, updateAvatar } = useAuth();
+  const { id } = useParams();
+  const editingSelf = !id;
+  const userId = id || user.idUsuario;
+  const [data, setData] = useState(null);
+  const [form, setForm] = useState({
+    nombre: '',
+    email: '',
+    contraseña: '',
+    rol: '',
+    avatarBase64: '',
+    avatarPreview: null
+  });
+  const [editing, setEditing] = useState(false);
+  const [errors, setErrors] = useState({ general: '', email: '', password: '' });
+  const navigate = useNavigate();
+  const isAdmin = user.rol === 'Admin';
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const userData = id ? await getUserById(id) : await getCurrentUser();
+        setData(userData);
+        setForm({
+          nombre: userData.nombre,
+          email: userData.email,
+          contraseña: userData.contraseña,
+          rol: userData.rol,
+          avatarBase64: userData.avatarBase64 || '',
+          avatarPreview: userData.avatarBase64 
+            ? `data:image/*;base64,${userData.avatarBase64}`
+            : null
+        });
+      } catch (error) {
+        alert('Error al cargar perfil');
+      }
+    };
+    loadProfile();
+  }, [id]);
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+    if (name === 'email') setErrors(prev => ({ ...prev, email: '' }));
+    if (name === 'contraseña') setErrors(prev => ({ ...prev, password: '' }));
+  };
+
+  const handleImageUpload = e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const fullDataURL = reader.result;
+      const base64Data = fullDataURL.split('base64,')[1];
+      
+      setForm(prev => ({
+        ...prev,
+        avatarBase64: base64Data,
+        avatarPreview: fullDataURL
+      }));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      const updatedUser = await updateUser(userId, {
+        ...form,
+        avatarBase64: form.avatarBase64
+      });
+
+      const avatarDataUrl = updatedUser.avatarBase64
+        ? `data:image/png;base64,${updatedUser.avatarBase64}`
+        : null;
+
+      updateAvatar(avatarDataUrl);
+      setData(prev => ({ ...prev, ...updatedUser, avatar: avatarDataUrl }));
+      setEditing(false);
+      setErrors({ general: '', email: '', password: '' });
+
+      if (!editingSelf && isAdmin) navigate('/users');
+
+    } catch (error) {
+      if (error.response?.data?.code === 'email_existente') {
+        setErrors({ email: error.response.data.message, general: '' });
+      } else {
+        setErrors({
+          general: error.response?.data?.message || 'Error al actualizar el perfil',
+          email: ''
+        });
+      }
+    }
+  };
+
+  if (!data) return <p className="text-center mt-5">Cargando...</p>;
+
+  return (
+    <div className="container mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>Perfil de {data.nombre}</h2>
+
+      {!editing ? (
+        <div className="profile-card p-4 shadow-sm rounded-3">
+          <div className="d-flex align-items-center">
+            <div className="avatar-container position-relative me-4">
+              {data.avatarBase64 ? (
+                <img
+                  src={`data:image/*;base64,${data.avatarBase64}`}
+                  alt="Avatar"
+                  className="avatar-image rounded-circle shadow"
+                />
+              ) : (
+                <div className="avatar-placeholder rounded-circle d-flex align-items-center justify-content-center">
+                  <i className="bi bi-person-fill fs-1" style={{ color: '#669bbc' }} />
+                </div>
+              )}
+            </div>
+            
+            <div className="profile-info flex-grow-1">
+              <dl className="row mb-0">
+                <dt className="col-sm-4 text-muted">Nombre</dt>
+                <dd className="col-sm-8 fs-5">{data.nombre}</dd>
+
+                <dt className="col-sm-4 text-muted">Email</dt>
+                <dd className="col-sm-8 fs-5">{data.email}</dd>
+
+                {isAdmin && (
+                  <>
+                    <dt className="col-sm-4 text-muted">Rol</dt>
+                    <dd className="col-sm-8 fs-5">{data.rol}</dd>
+                  </>
+                )}
+
+                <dt className="col-sm-4 text-muted">Registrado</dt>
+                <dd className="col-sm-8 fs-5">
+                  {new Date(data.fechaRegistro).toLocaleDateString()}
+                </dd>
+              </dl>
+              
+              <div className="text-center mt-4">
+                <Button
+                  onClick={() => setEditing(true)}
+                  className="edit-button px-4 py-2"
+                >
+                  Editar Perfil
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Form onSubmit={handleSubmit} className="edit-form p-4 shadow-sm rounded-3">
+          <Row className="mb-4">
+            <Col md={6}>
+              <Form.Group className="mb-3">
+                <Form.Label className="form-label">Nombre</Form.Label>
+                <Form.Control
+                  name="nombre"
+                  value={form.nombre}
+                  onChange={handleChange}
+                  className="form-input"
+                />
+              </Form.Group>
+              
+              <Form.Group className="mb-3">
+                <Form.Label className="form-label">Email</Form.Label>
+                <Form.Control
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  isInvalid={!!errors.email}
+                  className="form-input"
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+
+            <Col md={6} className="text-center">
+              <Form.Group className="mb-3">
+                <Form.Label className="form-label">Avatar</Form.Label>
+                <div className="avatar-upload-container position-relative mx-auto">
+                  <Form.Control
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    className="avatar-input"
+                  />
+                  
+                  {form.avatarPreview ? (
+                    <>
+                      <img
+                        src={form.avatarPreview}
+                        alt="Previsualización"
+                        className="avatar-preview rounded-circle shadow"
+                      />
+                      <div className="edit-icon-container">
+                        <i className="bi bi-pencil-fill edit-icon" />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="avatar-upload-placeholder rounded-circle d-flex align-items-center justify-content-center">
+                      <i className="bi bi-camera-fill fs-3" />
+                    </div>
+                  )}
+                </div>
+                <Form.Text className="d-block mt-2 text-muted">
+                  Haz clic para cambiar la foto
+                </Form.Text>
+              </Form.Group>
+            </Col>
+          </Row>
+
+          {isAdmin && (
+            <Row className="mb-4">
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label className="form-label">Rol</Form.Label>
+                  <Form.Select
+                    name="rol"
+                    value={form.rol}
+                    onChange={handleChange}
+                    className="form-input"
+                  >
+                    <option>Admin</option>
+                    <option>GestorClub</option>
+                    <option>Entrenador</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
+          )}
+
+          <Form.Group className="mb-4">
+            <Form.Label className="form-label">Contraseña</Form.Label>
+            <Form.Control
+              name="contraseña"
+              type="password"
+              placeholder="Nueva contraseña"
+              value={form.contraseña}
+              onChange={handleChange}
+              className="form-input"
+            />
+          </Form.Group>
+
+          {errors.general && (
+            <div className="alert alert-danger mb-4">{errors.general}</div>
+          )}
+
+          <div className="d-flex justify-content-center gap-3">
+            <Button
+              type="submit"
+              className="save-button px-4 py-2"
+            >
+              Guardar Cambios
+            </Button>
+            
+            <Button
+              variant="secondary"
+              onClick={() => setEditing(false)}
+              className="cancel-button px-4 py-2"
+            >
+              Cancelar
+            </Button>
+          </div>
+        </Form>
+      )}
+
+      <style>{`
+        .profile-card, .edit-form {
+          background: white;
+          border: 1px solid #dee2e6;
+        }
+        
+        .avatar-container {
+          width: 150px;
+          height: 150px;
+        }
+        
+        .avatar-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border: 3px solid #669bbc;
+        }
+        
+        .avatar-placeholder {
+          width: 100%;
+          height: 100%;
+          background-color: #f8f9fa;
+          border: 3px dashed #669bbc;
+        }
+        
+        .avatar-upload-container {
+          width: 150px;
+          height: 150px;
+          cursor: pointer;
+        }
+        
+        .avatar-input {
+          position: absolute;
+          opacity: 0;
+          width: 100%;
+          height: 100%;
+          cursor: pointer;
+          z-index: 2;
+        }
+        
+        .avatar-preview {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border: 3px solid #669bbc;
+        }
+        
+        .edit-icon-container {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          background: #780000;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 3;
+        }
+        
+        .edit-icon {
+          color: white;
+          font-size: 0.9rem;
+        }
+        
+        .avatar-upload-placeholder {
+          width: 100%;
+          height: 100%;
+          border: 3px dashed #780000;
+          background: #f8f9fa;
+          color: #780000;
+        }
+        
+        .form-label {
+          color: #780000;
+          font-weight: 500;
+        }
+        
+        .form-input {
+          border-radius: 8px;
+          border: 2px solid #dee2e6;
+          padding: 0.75rem;
+        }
+        
+        .form-input:focus {
+          border-color: #669bbc;
+          box-shadow: none;
+        }
+        
+        .edit-button, .save-button {
+          background-color: #780000;
+          border: none;
+          font-weight: 600;
+          transition: all 0.3s;
+        }
+        
+        .edit-button:hover, .save-button:hover {
+          background-color: #5a0000;
+          transform: translateY(-1px);
+        }
+        
+        .cancel-button {
+          background-color: #f4f3f2;
+          color: #780000;
+          border: none;
+          font-weight: 600;
+          transition: all 0.3s;
+        }
+        
+        .cancel-button:hover {
+          background-color: #e2e1e0;
+          color: #5a0000;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Profile;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Register.jsx ---
+
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { Form, Button, Card } from 'react-bootstrap';
+
+const Register = () => {
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  // Renombramos "avatar" a "avatarBase64" para que coincida con el backend
+  const [form, setForm] = useState({
+    nombre: '',
+    email: '',
+    contraseña: '',
+    avatarBase64: ''
+  });
+  const [errors, setErrors] = useState({ general: '', email: '', password: '' });
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const fullDataURL = reader.result;
+        const base64Data = fullDataURL.split('base64,')[1]; // Extrae solo el base64
+        
+        setForm(prev => ({
+          ...prev,
+          avatarBase64: base64Data, // Guarda solo "ABC123..."
+          avatarPreview: fullDataURL // Previsualización con Data URL
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleChange = e => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    // Limpiar errores mientras escribe
+    if (e.target.name === 'email')       setErrors(prev => ({ ...prev, email: '' }));
+    if (e.target.name === 'contraseña')  setErrors(prev => ({ ...prev, password: '' }));
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setErrors({ general: '', email: '', password: '' });
+
+    // 2. Crear payload con estructura correcta para el backend
+    const payload = {
+      nombre: form.nombre,
+      email: form.email,
+      contraseña: form.contraseña,
+      avatarBase64: form.avatarBase64 // ✅ Usar directamente
+    };
+
+
+    // 4. Llamar al servicio de registro con datos estructurados
+    const result = await register(payload);
+
+    // 5. Resto de la lógica...
+    if (result.success) {
+      navigate('/inicio');
+    } else {
+      if (result.code === 'email_existente') {
+        setErrors({ email: result.message, general: '' });
+      } else {
+        setErrors({ general: result.message || 'Error en el registro', email: '' });
+      }
+    }
+  };
+  
+  return (
+    <div className="d-flex vh-100" style={{
+      background: 'linear-gradient(90deg, #669bbc 0%, #780000 100%)'
+    }}>
+      <div className="w-50 d-flex align-items-center justify-content-center">
+        <img
+          src="/imagotipo_sin_fondo.png"
+          alt="Logo"
+          style={{
+            maxWidth: '60%',
+            filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.3))',
+          }}
+        />
+      </div>
+      
+      <div className="w-50 d-flex align-items-center justify-content-center">
+        <Card style={{
+          width: '80%',
+          maxWidth: '400px',
+          borderRadius: '16px',
+          background: 'rgba(255,255,255,0.9)',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+          border: 'none',
+          overflow: 'hidden',
+        }}>
+          <div style={{
+            backgroundColor: '#780000',
+            padding: '12px 0',
+          }}>
+            <h5 className="text-center text-white mb-0">Registro</h5>
+          </div>
+          
+          <Card.Body>
+            {errors.general && (
+              <div className="alert alert-danger mb-3" style={{ borderRadius: '8px' }}>
+                {errors.general}
+              </div>
+            )}
+
+            <Form onSubmit={handleSubmit}>
+              {/* Avatar */}
+              <Form.Group className="mb-3">
+                <Form.Label>Avatar</Form.Label>
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  style={{ borderRadius: '8px' }}
+                />
+                {form.avatarPreview && (
+                  <div className="mt-2 text-center">
+                    <img 
+                      src={form.avatarPreview}
+                      alt="Previsualización"
+                      style={{
+                        width: '100px',
+                        height: '100px',
+                        borderRadius: '50%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
+                )}
+              </Form.Group>
+
+              {/* Nombre */}
+              <Form.Group className="mb-3">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  name="nombre"
+                  type="text"
+                  value={form.nombre}
+                  onChange={handleChange}
+                  required
+                  style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+
+              {/* Email */}
+              <Form.Group className="mb-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  isInvalid={!!errors.email}
+                  style={{ borderRadius: '8px' }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              {/* Contraseña */}
+              <Form.Group className="mb-3">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  name="contraseña"
+                  type="password"
+                  value={form.contraseña}
+                  onChange={handleChange}
+                  required
+                  isInvalid={!!errors.password}
+                  style={{ borderRadius: '8px' }}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+
+              <Button
+                type="submit"
+                className="w-100"
+                style={{
+                  backgroundColor: '#780000',
+                  border: 'none',
+                  padding: '10px 0',
+                  borderRadius: '8px',
+                  fontWeight: '600',
+                }}
+              >
+                Regístrate
+              </Button>
+            </Form>
+
+            <p className="mt-3 text-center">
+              ¿Ya tienes cuenta?{' '}
+              <Link
+                to="/login"
+                style={{
+                  backgroundColor: '#669bbc',
+                  padding: '6px 12px',
+                  borderRadius: '6px',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  fontWeight: 'bold',
+                  transition: 'background-color 0.3s',
+                }}
+                onMouseEnter={e => (e.target.style.backgroundColor = '#546f8a')}
+                onMouseLeave={e => (e.target.style.backgroundColor = '#669bbc')}
+              >
+                Login
+              </Link>
+            </p>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
+export default Register;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\pages\Users.jsx ---
+
+import React, { useEffect, useState } from 'react';
+import { Table, Button, Container, Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { getUsers, deleteUser } from '../services/userService';
+
+const Users = () => {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const load = () => {
+    setLoading(true);
+    setError('');
+    
+    getUsers()
+      .then(data => {
+        if (Array.isArray(data)) {
+          setUsers(data);
+        } else {
+          setError('Formato de datos inválido');
+        }
+      })
+      .catch(err => {
+        setError('Error cargando usuarios');
+      })
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const handleDelete = async id => {
+    if (window.confirm('¿Seguro que quieres eliminar este usuario?')) {
+      try {
+        await deleteUser(id);
+        load();
+      } catch (error) {
+        let message = 'Error al eliminar';
+        
+        if (error.response?.data?.code === 'user_has_relations') {
+          message = 'No se puede eliminar: El usuario tiene clubes asociados';
+        }
+        
+        setError(message);
+      }
+    }
+  };
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', options);
+  };
+
+  return (
+    <Container className="mt-5">
+      <h2 className="mb-4 text-center" style={{ color: '#780000' }}>
+        Gestión de Usuarios
+      </h2>
+
+      {loading ? (
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" />
+          <p>Cargando usuarios...</p>
+        </div>
+      ) : error ? (
+        <div className="alert alert-danger text-center">
+          {error}
+          <Button variant="link" onClick={load}>Reintentar</Button>
+        </div>
+      ) : users.length === 0 ? (
+        <div className="text-center">No hay usuarios registrados</div>
+      ) : (
+        <div
+          style={{
+            background: 'white',
+            borderRadius: '12px',
+            boxShadow: '0 4px 16px rgba(0,0,0,0.1)',
+            overflowX: 'auto',
+          }}
+        >
+          <style>{`
+            .btn-edit:hover { background-color: #f4f3f2 !important; color: black !important; }
+            .btn-delete:hover { background-color: #f4f3f2 !important; color: black !important; }
+          `}</style>
+
+          <Table responsive striped hover className="mb-0">
+            <thead>
+              <tr style={{ backgroundColor: '#669bbc', color: 'white' }}>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Fecha de Registro</th>
+                <th className="text-center">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map(u => (
+                <tr key={u.idUsuario}>
+                  <td>{u.idUsuario}</td>
+                  <td>{u.nombre}</td>
+                  <td>{u.email}</td>
+                  <td>{u.rol}</td>
+                  <td>{formatDate(u.fechaRegistro)}</td>
+                  <td className="text-center">
+                    <Button
+                      size="sm"
+                      className="btn-edit me-2"
+                      style={{
+                        backgroundColor: '#669bbc',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontWeight: '500',
+                      }}
+                      onClick={() => navigate(`/users/${u.idUsuario}/edit`)}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      size="sm"
+                      className="btn-delete"
+                      style={{
+                        backgroundColor: '#780000',
+                        border: 'none',
+                        borderRadius: '6px',
+                        fontWeight: '500',
+                      }}
+                      onClick={() => handleDelete(u.idUsuario)}
+                    >
+                      Eliminar
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
+    </Container>
+  );
+};
+
+export default Users;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\services\api.js ---
+
+import axios from 'axios';
+
+const api = axios.create({ baseURL: '/' });
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem('token');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+export default api;
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\services\authService.js ---
+
+import api from './api';
+
+export const login = async (email, contraseña) => {
+  try {
+    const res = await api.post('/api/auth/login', { email, contraseña });
+    return res.data;
+  } catch (error) {
+    console.error('[ERROR][authService] Login:', {
+      status: error.response?.status,
+      code: error.response?.data?.code,
+      message: error.response?.data?.message
+    });
+    throw error;
+  }
+};
+
+export const register = async (userData) => { // Recibir un objeto
+  try {
+
+    const res = await api.post('/api/auth/registro', userData); // Enviar el objeto directamente
+
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\services\clubService.js ---
+
+import api from './api';
+
+/** Listar clubes */
+export const getClubs = async (userRole, userId) => {
+  const endpoint = userRole === 'Admin' 
+    ? '/club' 
+    : `/club?gestorId=${userId}`;
+  const res = await api.get(endpoint);
+  return Array.isArray(res.data) ? res.data : [];
+};
+
+/** Crear un nuevo club */
+export const createClub = (clubData) =>
+  api.post('/club', clubData).then((r) => r.data);
+
+/** Obtener un club por ID */
+export const getClubById = (id) =>
+  api.get(`/club/${id}`).then((r) => {
+    const d = r.data;
+    return {
+      ...d,
+      fechaCreacionClub: d.fechaCreacionClub?.split('T')[0] || '',
+    };
+  });
+
+/** Actualizar un club */
+export const updateClub = (id, data) => {
+  const payload = {
+    ...data,
+    fechaCreacionClub: data.fechaCreacionClub + 'T00:00:00',
+  };
+  return api.patch(`/club/${id}`, payload).then((r) => r.data);
+};
+
+/** Eliminar un club */
+export const deleteClub = (id) =>
+  api.delete(`/club/${id}`).then((r) => r.data);
+
+/** = FUNCIONES PARA GESTORES = */
+
+/** Traer todos los gestores */
+export const getAllGestores = async () => {
+  const res = await api.get('/usuarios/gestores');
+  return Array.isArray(res.data) ? res.data : [];
+};
+
+/** Asignar un gestor a un club */
+export const assignGestor = async (clubId, gestorId) => {
+  await api.post('/club/asignarUsuario', {
+    idClub: clubId,
+    idUsuario: gestorId,
+  });
+};
+
+/** Desvincular un gestor de un club */
+export const removeGestor = async (clubId, gestorId) => {
+  await api.delete(`/club/${clubId}/gestores/${gestorId}`);
+};
+
+/** Buscar un usuario por email  */
+export const findUserByEmail = async (email) => {
+  const res = await api.get(`/usuarios/email?email=${encodeURIComponent(email)}`);
+  return res.data;
+};
+
+/** Buscar y asignar por email solo si es GestorClub */
+export const assignGestorByEmail = async (clubId, email) => {
+  const user = await findUserByEmail(email);
+  if (user.rol !== 'GestorClub') {
+    const err = new Error('El usuario no tiene rol GestorClub');
+    err.code = 'not_gestor';
+    throw err;
+  }
+  await assignGestor(clubId, user.idUsuario);
+};
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\services\equipoService.js ---
+
+import api from './api';
+
+export const getEquipos = async (userRole, userId) => {
+  try {
+    let endpoint;
+    switch(userRole) {
+      case 'Admin':
+        endpoint = '/equipo';
+        break;
+      case 'GestorClub':
+        endpoint = `/equipo?gestorId=${userId}`;
+        break;
+      case 'Entrenador':
+        endpoint = `/equipo?entrenadorId=${userId}`;
+        break;
+      default:
+        endpoint = '/equipo';
+    }
+
+    const res = await api.get(endpoint);
+
+    const equipos = Array.isArray(res.data) ? res.data : [];
+    
+    return equipos;
+    
+  } catch (error) {
+    return [];
+  }
+};
+
+export const createEquipo = async (data) => {
+  try {
+    const res = await api.post('/equipo', data);
+    return res.data;
+  } catch (error) {
+    throw error.response?.data || { message: 'Error creando equipo' };
+  }
+};
+
+export const getEquipoById = async (id) => {
+  try {
+    const res = await api.get(`/equipo/${id}`);
+    return res.data;
+  } catch (error) {
+    throw new Error('Equipo no encontrado');
+  }
+};
+
+export const updateEquipo = async (id, data) => {
+  try {
+    const res = await api.patch(`/equipo/${id}`, data);
+    return res.data;
+  } catch (error) {
+    throw error.response?.data || { message: 'Error actualizando equipo' };
+  }
+};
+
+export const deleteEquipo = async (id) => {
+  try {
+    await api.delete(`/equipo/${id}`);
+  } catch (error) {
+    throw error.response?.data || { message: 'Error eliminando equipo' };
+  }
+};
+
+/** Buscar un usuario por email  */
+export const findUserByEmail = async (email) => {
+  const res = await api.get(`/usuarios/email?email=${encodeURIComponent(email)}`);
+  return res.data;
+};
+
+/** Asignar un entrenador a un equipo por email */
+export const assignEntrenadorByEmail = async (equipoId, email) => {
+  // 1) Buscamos el usuario por email
+  const user = await findUserByEmail(email);
+
+  // 2) Validamos que tenga rol Entrenador
+  if (user.rol !== 'Entrenador') {
+    const err = new Error('El usuario no tiene rol Entrenador');
+    err.code = 'not_entrenador';
+    throw err;
+  }
+
+  // 3) Llamamos al endpoint con el idUsuario
+  await api.post('/equipo/asignarUsuario', {
+    idEquipo: equipoId,
+    idUsuario: user.idUsuario
+  });
+};
+
+export const removeEntrenador = async (equipoId, entrenadorId) => {
+  try {
+    await api.delete(`/equipo/${equipoId}/entrenadores/${entrenadorId}`);
+  } catch (error) {
+    throw error.response?.data || { message: 'Error eliminando entrenador' };
+  }
+};
+
+export const getClubesDisponibles = async (userId) => {
+  try {
+    const res = await api.get(`/club?gestorId=${userId}`);
+    return Array.isArray(res.data) ? res.data : [];
+  } catch (error) {
+    throw new Error('Error obteniendo clubes');
+  }
+};
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\services\partidoService.js ---
+
+import api from './api';  // Instancia de axios configurada con baseURL y token
+
+export const getPartidos = async () => {
+  console.log('Llamando a GET /partidos');
+  const res = await api.get('/partidos');
+  console.log('Respuesta /partidos:', res.data);
+  return res;
+};
+
+export const getPartidoById = async (id) => {
+  console.log(`Llamando a GET /partidos/${id}`);
+  const res = await api.get(`/partidos/${id}`);
+  console.log('Respuesta /partido por id:', res.data);
+  return res;
+};
+
+export const createPartido = async (data) => {
+  console.log('Llamando a POST /partidos con datos:', data);
+  const res = await api.post('/partidos', data);
+  console.log('Respuesta creación:', res.data);
+  return res;
+};
+
+export const updatePartido = async (id, data) => {
+  console.log(`Llamando a PATCH /partidos/${id} con datos:`, data);
+  const res = await api.patch(`/partidos/${id}`, data);
+  console.log('Respuesta actualización:', res.data);
+  return res;
+};
+
+export const deletePartido = async (id) => {
+  console.log(`Llamando a DELETE /partidos/${id}`);
+  const res = await api.delete(`/partidos/${id}`);
+  console.log('Partido eliminado');
+  return res;
+};
+
+export const getEquiposDisponibles = async () => {
+  console.log('Llamando a GET /partidos/equipos-disponibles');
+  const res = await api.get('/partidos/equipos-disponibles');
+  console.log('Equipos disponibles:', res.data);
+  return res;
+};
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\services\userService.js ---
+
+import api from './api';
+
+// Obtener usuario actual (propio perfil)
+export const getCurrentUser = async () => {
+  try {
+    const res = await api.get('/api/auth/me');
+    
+    return {
+      ...res.data,
+      avatar: res.data.avatarBase64 
+        ? `data:image/*;base64,${res.data.avatarBase64}` // Soporta todos los tipos de imagen
+        : null
+    };
+  } catch (error) {
+    console.error('[ERROR][userService] Error obteniendo usuario actual:', error);
+    throw error;
+  }
+};
+
+// Listar todos los usuarios (Admin)
+export const getUsers = async () => {
+  try {
+    const res = await api.get('/usuarios');
+
+    return (res.data || []).map(u => ({
+      ...u,
+      avatar: u.avatarBase64 
+        ? `data:image/*;base64,${u.avatarBase64}` // Campo correcto del backend
+        : null
+    }));
+  } catch (error) {
+    console.error('[ERROR][userService] Error listando usuarios:', error);
+    return [];
+  }
+};
+
+// Obtener usuario por ID
+export const getUserById = async id => {
+  try {
+    const res = await api.get(`/usuarios/${id}`);
+
+
+    return {
+      ...res.data,
+      avatar: res.data.avatarBase64 
+        ? `data:image/*;base64,${res.data.avatarBase64}` 
+        : null
+    };
+  } catch (error) {
+    console.error(`[ERROR][userService] Error obteniendo usuario ${id}:`, error);
+    throw error;
+  }
+};
+
+// Actualizar usuario (incluido avatar)
+export const updateUser = async (id, data) => {
+  try {
+    // Extraer base64 puro del Data URL (si existe)
+    const avatarBase64 = data.avatarBase64 || (
+      data.avatar?.includes('base64,')
+        ? data.avatar.split('base64,')[1]
+        : data.avatar
+    );
+
+
+    const res = await api.patch(`/usuarios/${id}`, {
+      ...data,
+      avatarBase64 // Usar nombre de campo del DTO
+    });
+
+    
+    return {
+      ...res.data,
+      avatarBase64: res.data.avatarBase64,
+      avatar: res.data.avatarBase64
+        ? `data:image/png;base64,${res.data.avatarBase64}`
+        : null
+    };
+  } catch (error) {
+    console.error('[ERROR][userService] Error actualizando usuario:', {
+      status: error.response?.status,
+      code: error.response?.data?.code,
+      message: error.response?.data?.message
+    });
+    throw error;
+  }
+};
+
+// Eliminar usuario
+export const deleteUser = async id => {
+  try {
+    await api.delete(`/usuarios/${id}`);
+    return true;
+  } catch (error) {
+    throw error;
+  }
+};
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\App.jsx ---
+
+import React, { useState } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import PrivateRoute from './components/PrivateRoute';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Inicio from './pages/Inicio';
+import Users from './pages/Users';
+import Profile from './pages/Profile';
+import Clubs from './pages/Clubs';
+import ClubForm from './pages/ClubForm';
+import Equipos from './pages/Equipos';
+import EquipoForm from './pages/EquipoForm';
+import Partidos    from "./pages/Partidos";
+import PartidoForm from "./pages/PartidoForm";
+import Estadisticas from './pages/Estadisticas';
+
+
+export default function App() {
+  const location = useLocation();
+  const [sidebarWidth, setSidebarWidth] = useState(200);
+
+  const hideSidebar = location.pathname === '/login' || location.pathname === '/register';
+
+  return (
+    <div className="d-flex">
+      {!hideSidebar && (
+        <Sidebar onToggle={width => setSidebarWidth(width)} />
+      )}
+      <main
+        style={{
+          marginLeft: hideSidebar ? 0 : sidebarWidth,
+          transition: 'margin-left 0.3s ease',
+          width: '100%'
+        }}
+      >
+        <Routes>
+          <Route path="/" element={<Navigate to="/inicio" replace />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/inicio" element={<Inicio />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="/users/:id/edit" element={<Profile />} />
+            <Route element={<PrivateRoute allowedRoles={['Admin', 'GestorClub']} />}>
+              <Route path="/club" element={<Clubs />} />
+              <Route path="/club/new" element={<ClubForm />} />
+              <Route path="/club/:id" element={<ClubForm />} />
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={['Admin', 'GestorClub', 'Entrenador']} />}>
+              <Route path="/equipo" element={<Equipos />} />
+              <Route path="/equipo/new" element={<EquipoForm />} />
+              <Route path="/equipo/:id" element={<EquipoForm />} />
+            </Route>
+            <Route element={<PrivateRoute allowedRoles={['Admin','GestorClub','Entrenador']} />}>
+              <Route path="/partidos"       element={<Partidos   />} />
+              <Route path="/partidos/new"   element={<PartidoForm />} />
+              <Route path="/partidos/:id"   element={<PartidoForm />} />
+             </Route>
+          </Route>
+          <Route path="/estadisticas" element={<Estadisticas />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
+
+--- C:\Users\ortiz\OneDrive\Escritorio\PI\front\handballstatspro\src\main.jsx ---
+
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter>               
+      <AuthProvider>            
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+);

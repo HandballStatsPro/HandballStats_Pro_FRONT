@@ -42,8 +42,8 @@ const Sidebar = ({ onToggle }) => {
       ? [{ to: '/club', icon: <FaBuilding />, label: 'Clubes' }] 
       : []),
     { to: '/equipo', icon: <FaUsersCog />, label: 'Equipos' },
-    { icon: <FaFutbol />, label: 'Partidos' },
-    { icon: <FaChartBar />, label: 'Estadísticas' },
+    { to: '/partidos', icon: <FaFutbol />, label: 'Partidos' },
+    { to: '/estadisticas', icon: <FaChartBar />, label: 'Estadísticas' },
   ];
 
   return (

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Button, Container, Spinner, Alert } from 'react-bootstrap';
+import { Table, Button, Container, Spinner, Alert, Form, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getEquipos, deleteEquipo } from '../services/equipoService';
+import { getClubesDisponibles } from '../services/equipoService';
 
 const Equipos = () => {
   const { user } = useAuth();
@@ -10,17 +11,15 @@ const Equipos = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
-
+  const [clubes, setClubes] = useState([]);
+  const [selectedClub, setSelectedClub] = useState('');
 
   const loadEquipos = async () => {
     try {
       setLoading(true);
       setError('');
-      
       const data = await getEquipos(user.rol, user.idUsuario);
-
       setEquipos(Array.isArray(data) ? data : []);
-      
     } catch (err) {
       setError('Error cargando equipos');
       setEquipos([]);
@@ -29,8 +28,22 @@ const Equipos = () => {
     }
   };
 
+  const loadClubes = async () => {
+    try {
+      const clubesData = await getClubesDisponibles(user.idUsuario);
+      setClubes(Array.isArray(clubesData) ? clubesData : []);
+    } catch (err) {
+      setError('Error cargando clubes');
+    }
+  };
+
   useEffect(() => {
-    if (user) loadEquipos();
+    if (user) {
+      loadEquipos();
+      if (['Admin', 'GestorClub'].includes(user.rol)) {
+        loadClubes();
+      }
+    }
   }, [user]);
 
   const handleDelete = async (id) => {
@@ -49,6 +62,10 @@ const Equipos = () => {
     return new Date(dateString).toLocaleDateString('es-ES', options);
   };
 
+  const filteredEquipos = selectedClub 
+    ? equipos.filter(e => e.idClub === Number(selectedClub))
+    : equipos;
+
   if (loading) {
     return (
       <div className="text-center mt-5">
@@ -64,26 +81,54 @@ const Equipos = () => {
         Gestión de Equipos
       </h2>
 
-        <div className="text-center mt-4">
-          <Button
-            onClick={() => navigate('/equipo/new')}
-            style={{
-              backgroundColor: '#669bbc',
-              border: 'none',
-              borderRadius: '8px',
-              fontWeight: '600',
-              padding: '10px 25px'
-            }}
-          >
-            Nuevo Equipo
-          </Button>
-        </div>
+      <div className="mt-4">
+        <Row className="justify-content-center align-items-center g-3">
+          {['Admin', 'GestorClub'].includes(user.rol) && (
+            <Col xs={12} md={6} lg={4}>
+              <Form.Group controlId="filterClub">
+                <Form.Label className="fw-bold">Filtrar por club:</Form.Label>
+                <Form.Select
+                  value={selectedClub}
+                  onChange={(e) => setSelectedClub(e.target.value)}
+                  style={{
+                    borderRadius: '8px',
+                    border: '2px solid #669bbc',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="">Todos los clubes</option>
+                  {clubes.map(club => (
+                    <option key={club.idClub} value={club.idClub}>
+                      {club.nombre}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+            </Col>
+          )}
+          <Col xs={12} md={6} lg={4}>
+            <Button
+              onClick={() => navigate('/equipo/new')}
+              style={{
+                backgroundColor: '#669bbc',
+                border: 'none',
+                borderRadius: '8px',
+                fontWeight: '600',
+                padding: '10px 25px',
+                width: '100%'
+              }}
+            >
+              Nuevo Equipo
+            </Button>
+          </Col>
+        </Row>
+      </div>
 
       {error ? (
         <Alert variant="danger" className="text-center">
           {error} <Button variant="link" onClick={loadEquipos}>Reintentar</Button>
         </Alert>
-      ) : Array.isArray(equipos) && equipos.length === 0 ? (
+      ) : filteredEquipos.length === 0 ? (
         <div className="text-center">No se encontraron equipos</div>
       ) : (
         <div style={{
@@ -107,7 +152,7 @@ const Equipos = () => {
               </tr>
             </thead>
             <tbody>
-              {Array.isArray(equipos) && equipos.map(equipo => (
+              {filteredEquipos.map(equipo => (
                 <tr key={equipo.idEquipo}>
                   {user.rol === 'Admin' && <td>{equipo.idEquipo}</td>}
                   <td>{equipo.nombre}</td>

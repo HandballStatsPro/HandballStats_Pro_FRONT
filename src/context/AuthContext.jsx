@@ -3,18 +3,36 @@ import { login as loginReq, register as registerReq } from '../services/authServ
 import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
   const login = async ({ email, contraseña }) => {
     try {
-      const data = await loginReq(email, contraseña);
-      localStorage.setItem('token', data.token);
-      setUser(data.usuario);
+      const { token, usuario } = await loginReq(email, contraseña);
+
+      // Guardar token
+      localStorage.setItem('token', token);
+
+      // Mapear avatarBase64 → avatar Data‑URL
+      const avatarDataUrl = usuario.avatarBase64
+        ? `data:image/png;base64,${usuario.avatarBase64}`
+        : null;
+
+      // Actualizar estado de usuario
+      setUser({
+        idUsuario: usuario.idUsuario,
+        nombre: usuario.nombre,
+        email: usuario.email,
+        rol: usuario.rol,
+        fechaRegistro: usuario.fechaRegistro,
+        avatar: avatarDataUrl
+      });
+
       return { success: true };
     } catch (error) {
-      return { 
+      return {
         success: false,
         message: error.response?.data?.message || 'Error de conexión',
         code: error.response?.data?.code || 'unknown_error'
@@ -22,11 +40,34 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const register = async ({ nombre, email, contraseña }) => {
+  const register = async ({ nombre, email, contraseña, avatarBase64 }) => {
     try {
-      const result = await registerReq(nombre, email, contraseña);
-      localStorage.setItem('token', result.token);
-      setUser(result.usuario);      
+
+      const { token, usuario } = await registerReq({
+        nombre,
+        email,
+        contraseña,
+        avatarBase64
+      });
+
+      // Guardar token
+      localStorage.setItem('token', token);
+
+      // Mapear avatarBase64 → avatar Data‑URL
+      const avatarDataUrl = usuario.avatarBase64
+        ? `data:image/png;base64,${usuario.avatarBase64}`
+        : null;
+
+      // Actualizar estado de usuario
+      setUser({
+        idUsuario: usuario.idUsuario,
+        nombre: usuario.nombre,
+        email: usuario.email,
+        rol: usuario.rol,
+        fechaRegistro: usuario.fechaRegistro,
+        avatar: avatarDataUrl
+      });
+
       return { success: true };
     } catch (error) {
       return {
@@ -37,6 +78,13 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const updateAvatar = newDataUrl => {
+    setUser(prev => ({
+      ...prev,
+      avatar: newDataUrl
+    }));
+  };
+
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -45,9 +93,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider
+      value={{ user, login, register, logout, updateAvatar }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
+
 export const useAuth = () => useContext(AuthContext);
