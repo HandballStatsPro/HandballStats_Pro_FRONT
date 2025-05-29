@@ -31,7 +31,7 @@ const Profile = () => {
         setForm({
           nombre: userData.nombre,
           email: userData.email,
-          contraseña: userData.contraseña,
+          contraseña: "",
           rol: userData.rol,
           avatarBase64: userData.avatarBase64 || '',
           avatarPreview: userData.avatarBase64 
