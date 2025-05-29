@@ -2,9 +2,7 @@ import api from './api';
 
 export const login = async (email, contraseña) => {
   try {
-    console.log('[DEBUG] login() - Email:', email);
     const res = await api.post('/api/auth/login', { email, contraseña });
-    console.log('[DEBUG] login() - Response data:', res.data);
     return res.data;
   } catch (error) {
     console.error('[ERROR][authService] Login:', {
@@ -15,7 +13,6 @@ export const login = async (email, contraseña) => {
     throw error;
   }
 };
-
 
 export const register = async (userData) => { // Recibir un objeto
   try {
