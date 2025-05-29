@@ -72,11 +72,22 @@ const Profile = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+
+    // Crear un payload con los datos base
+    const payload = {
+      nombre: form.nombre,
+      email: form.email,
+      rol: form.rol,
+      avatarBase64: form.avatarBase64
+    };
+
+    // Solo agregar la contraseña si el usuario ha escrito algo
+    if (form.contraseña && form.contraseña.trim() !== '') {
+      payload.contraseña = form.contraseña;
+    }
+
     try {
-      const updatedUser = await updateUser(userId, {
-        ...form,
-        avatarBase64: form.avatarBase64
-      });
+      const updatedUser = await updateUser(userId, payload);
 
       const avatarDataUrl = updatedUser.avatarBase64
         ? `data:image/png;base64,${updatedUser.avatarBase64}`
@@ -88,7 +99,6 @@ const Profile = () => {
       setErrors({ general: '', email: '', password: '' });
 
       if (!editingSelf && isAdmin) navigate('/users');
-
     } catch (error) {
       if (error.response?.data?.code === 'email_existente') {
         setErrors({ email: error.response.data.message, general: '' });
@@ -243,14 +253,15 @@ const Profile = () => {
 
           <Form.Group className="mb-4">
             <Form.Label className="form-label">Contraseña</Form.Label>
-            <Form.Control
-              name="contraseña"
-              type="password"
-              placeholder="Nueva contraseña"
-              value={form.contraseña}
-              onChange={handleChange}
-              className="form-input"
-            />
+              <Form.Control
+                name="contraseña"
+                type="password"
+                placeholder="Nueva contraseña"
+                value={form.contraseña}
+                onChange={handleChange}
+                className="form-input"
+                isInvalid={form.contraseña !== '' && !!errors.password}
+              />
           </Form.Group>
 
           {errors.general && (
