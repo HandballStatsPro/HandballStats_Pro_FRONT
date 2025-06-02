@@ -20,7 +20,7 @@ const ClubForm = () => {
   const [form, setForm] = useState({
     nombre: '',
     ciudad: '',
-    fechaCreacionClub: '',
+    // fechaCreacionClub ya no es parte del estado del formulario
   });
   const [gestorEmail, setGestorEmail] = useState('');
   const [gestores, setGestores] = useState([]);
@@ -37,7 +37,7 @@ const ClubForm = () => {
         setForm({
           nombre: data.nombre,
           ciudad: data.ciudad,
-          fechaCreacionClub: data.fechaCreacionClub,
+          // No se setea fechaCreacionClub aquí, ya que el backend lo maneja
         });
         setGestores(data.gestores || []);
       } catch (err) {
@@ -54,15 +54,34 @@ const ClubForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setError(''); setSuccess('');
+    setError('');
+    setSuccess('');
+
+    // Validación campos
+    if (!form.nombre.trim()) {
+      setError('El nombre del club no puede estar vacío.');
+      return;
+    }
+    if (!form.ciudad.trim()) {
+      setError('La ciudad del club no puede estar vacía.');
+      return;
+    }
+
     setSaving(true);
 
     try {
+      // Creamos un payload para enviar solo los campos que están en el formulario
+      const payload = {
+        nombre: form.nombre,
+        ciudad: form.ciudad,
+        // fechaCreacionClub no se envía desde el frontend, el backend la generará
+      };
+
       if (isEditing) {
-        await updateClub(id, form);
+        await updateClub(id, payload); // Usamos payload
         setSuccess('Club actualizado correctamente');
       } else {
-        await createClub(form);
+        await createClub(payload); // Usamos payload
         setSuccess('Club creado correctamente');
         navigate('/club');
       }
@@ -74,7 +93,8 @@ const ClubForm = () => {
   };
 
   const handleAddGestor = async () => {
-    setError(''); setSuccess('');
+    setError('');
+    setSuccess('');
     if (!gestorEmail) return setError('Introduce un email');
     try {
       const u = await findUserByEmail(gestorEmail);
@@ -94,7 +114,7 @@ const ClubForm = () => {
     if (!window.confirm("¿Eliminar gestor del club?")) return;
 
     try {
-      await removeGestor(id, idUsuario); 
+      await removeGestor(id, idUsuario);
       setGestores(gestores.filter(g => g.idUsuario !== idUsuario));
       setSuccess('Gestor eliminado correctamente');
     } catch (err) {
@@ -140,7 +160,7 @@ const ClubForm = () => {
                 />
               </Form.Group>
             </Col>
-            
+
             <Col md={6}>
               <Form.Group controlId="formCiudad">
                 <Form.Label>Ciudad</Form.Label>
@@ -155,6 +175,8 @@ const ClubForm = () => {
             </Col>
           </Row>
 
+          {/* Se ha eliminado el campo de Fecha de Fundación */}
+          {/*
           <Row className="mb-4">
             <Col md={6}>
               <Form.Group controlId="formFecha">
@@ -166,10 +188,12 @@ const ClubForm = () => {
                   onChange={handleChange}
                   required
                   style={{ borderRadius: '8px' }}
+                  readOnly
                 />
               </Form.Group>
             </Col>
           </Row>
+          */}
 
           <div className="d-flex justify-content-end gap-3">
             <Button
@@ -211,7 +235,7 @@ const ClubForm = () => {
 
             <div className="mt-4">
               <h4 className="mb-4">Gestores Vinculados</h4>
-              
+
               {gestores.length === 0 ? (
                 <p className="text-muted">No hay gestores asignados</p>
               ) : (
@@ -227,8 +251,8 @@ const ClubForm = () => {
                       <tr key={g.idUsuario}>
                         <td>{g.nombre}</td>
                         <td className="text-end">
-                          <Button 
-                            variant="danger" 
+                          <Button
+                            variant="danger"
                             size="sm"
                             onClick={() => handleDeleteGestor(g.idUsuario)}
                             style={{
@@ -257,7 +281,7 @@ const ClubForm = () => {
                     />
                   </Col>
                   <Col xs="auto">
-                    <Button 
+                    <Button
                       onClick={handleAddGestor}
                       style={{
                         backgroundColor: '#669bbc',

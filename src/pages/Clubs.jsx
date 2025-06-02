@@ -103,7 +103,7 @@ const Clubs = () => {
                 {user.rol === 'Admin' && <th>ID</th>}
                 <th>Nombre</th>
                 <th>Ciudad</th>
-                <th>Fundación</th>
+                <th>Fecha de creación</th>
                 {user.rol === 'Admin' && <th>Gestores</th>}
                 <th className="text-center">Acciones</th>
               </tr>

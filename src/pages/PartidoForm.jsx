@@ -17,7 +17,7 @@ const PartidoForm = () => {
     fecha: '',
     resultado: '',
   });
-  
+
   const [equipos, setEquipos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -30,9 +30,9 @@ const PartidoForm = () => {
           getEquiposDisponibles(),
           isEdit ? getPartidoById(id) : Promise.resolve({ data: null })
         ]);
-        
+
         setEquipos(eRes.data || []);
-        
+
         if (isEdit && pRes.data) {
           const p = pRes.data;
           setForm({
@@ -64,7 +64,21 @@ const PartidoForm = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    
+
+    // Validaciones de campos
+    if (!form.nombreRival.trim()) {
+      setError('El nombre del rival no puede estar vacío.');
+      return;
+    }
+
+    if (form.resultado && form.resultado.trim() !== '') {
+      const resultadoRegex = /^\d+-\d+$/;
+      if (!resultadoRegex.test(form.resultado)) {
+        setError('El resultado debe tener el formato número-número (ej: 2-1).');
+        return;
+      }
+    }
+
     try {
       if (isEdit) {
         await updatePartido(id, form);
@@ -93,10 +107,10 @@ const PartidoForm = () => {
         {isEdit ? 'Editar Partido' : 'Nuevo Partido'}
       </h2>
 
-      <div className="p-4" style={{ 
-        background: 'white', 
-        borderRadius: '12px', 
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)' 
+      <div className="p-4" style={{
+        background: 'white',
+        borderRadius: '12px',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
       }}>
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
@@ -117,7 +131,7 @@ const PartidoForm = () => {
                 </Form.Select>
               </Form.Group>
             </Col>
-            
+
             <Col md={6}>
               <Form.Group controlId="nombreRival">
                 <Form.Label>Nombre Rival</Form.Label>
@@ -147,10 +161,10 @@ const PartidoForm = () => {
                 />
               </Form.Group>
             </Col>
-            
+
             <Col md={6}>
-              <Form.Group controlId="resultado" className="mt-4">
-                <Form.Check 
+              <Form.Group controlId="esLocal" className="mt-4">
+                <Form.Check
                   type="checkbox"
                   name="esLocal"
                   label="¿Es local?"

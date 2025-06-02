@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react'; // Importamos useCallback
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -23,27 +23,30 @@ const Profile = () => {
   const navigate = useNavigate();
   const isAdmin = user.rol === 'Admin';
 
-  useEffect(() => {
-    const loadProfile = async () => {
-      try {
-        const userData = id ? await getUserById(id) : await getCurrentUser();
-        setData(userData);
-        setForm({
-          nombre: userData.nombre,
-          email: userData.email,
-          contraseña: "",
-          rol: userData.rol,
-          avatarBase64: userData.avatarBase64 || '',
-          avatarPreview: userData.avatarBase64 
-            ? `data:image/*;base64,${userData.avatarBase64}`
-            : null
-        });
-      } catch (error) {
-        alert('Error al cargar perfil');
-      }
-    };
-    loadProfile();
+  // Función para cargar el perfil
+  const loadProfileData = useCallback(async () => {
+    try {
+      const userData = id ? await getUserById(id) : await getCurrentUser();
+      setData(userData);
+      setForm({
+        nombre: userData.nombre,
+        email: userData.email,
+        contraseña: "",
+        rol: userData.rol,
+        avatarBase64: userData.avatarBase64 || '',
+        avatarPreview: userData.avatarBase64
+          ? `data:image/*;base64,${userData.avatarBase64}`
+          : null
+      });
+      setErrors({ general: '', email: '', password: '' }); // Resetear errores al cargar
+    } catch (error) {
+      alert('Error al cargar perfil');
+    }
   }, [id]);
+
+  useEffect(() => {
+    loadProfileData();
+  }, [loadProfileData]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -55,12 +58,12 @@ const Profile = () => {
   const handleImageUpload = e => {
     const file = e.target.files[0];
     if (!file) return;
-    
+
     const reader = new FileReader();
     reader.onloadend = () => {
       const fullDataURL = reader.result;
       const base64Data = fullDataURL.split('base64,')[1];
-      
+
       setForm(prev => ({
         ...prev,
         avatarBase64: base64Data,
@@ -73,7 +76,15 @@ const Profile = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // Crear un payload con los datos base
+    if (!form.nombre.trim()) {
+      setErrors(prev => ({ ...prev, general: 'El nombre no puede estar vacío.' }));
+      return;
+    }
+    if (!form.email.trim()) {
+      setErrors(prev => ({ ...prev, general: 'El email no puede estar vacío.' }));
+      return;
+    }
+
     const payload = {
       nombre: form.nombre,
       email: form.email,
@@ -81,7 +92,6 @@ const Profile = () => {
       avatarBase64: form.avatarBase64
     };
 
-    // Solo agregar la contraseña si el usuario ha escrito algo
     if (form.contraseña && form.contraseña.trim() !== '') {
       payload.contraseña = form.contraseña;
     }
@@ -118,6 +128,7 @@ const Profile = () => {
       <h2 className="mb-4 text-center" style={{ color: '#780000' }}>Perfil de {data.nombre}</h2>
 
       {!editing ? (
+        // ... (vista del perfil sin cambios) ...
         <div className="profile-card p-4 shadow-sm rounded-3">
           <div className="d-flex align-items-center">
             <div className="avatar-container position-relative me-4">
@@ -133,7 +144,7 @@ const Profile = () => {
                 </div>
               )}
             </div>
-            
+
             <div className="profile-info flex-grow-1">
               <dl className="row mb-0">
                 <dt className="col-sm-4 text-muted">Nombre</dt>
@@ -154,7 +165,7 @@ const Profile = () => {
                   {new Date(data.fechaRegistro).toLocaleDateString()}
                 </dd>
               </dl>
-              
+
               <div className="text-center mt-4">
                 <Button
                   onClick={() => setEditing(true)}
@@ -168,6 +179,7 @@ const Profile = () => {
         </div>
       ) : (
         <Form onSubmit={handleSubmit} className="edit-form p-4 shadow-sm rounded-3">
+          {/* ... (campos del formulario de edición sin cambios) ... */}
           <Row className="mb-4">
             <Col md={6}>
               <Form.Group className="mb-3">
@@ -179,7 +191,7 @@ const Profile = () => {
                   className="form-input"
                 />
               </Form.Group>
-              
+
               <Form.Group className="mb-3">
                 <Form.Label className="form-label">Email</Form.Label>
                 <Form.Control
@@ -206,7 +218,7 @@ const Profile = () => {
                     onChange={handleImageUpload}
                     className="avatar-input"
                   />
-                  
+
                   {form.avatarPreview ? (
                     <>
                       <img
@@ -253,15 +265,15 @@ const Profile = () => {
 
           <Form.Group className="mb-4">
             <Form.Label className="form-label">Contraseña</Form.Label>
-              <Form.Control
-                name="contraseña"
-                type="password"
-                placeholder="Nueva contraseña"
-                value={form.contraseña}
-                onChange={handleChange}
-                className="form-input"
-                isInvalid={form.contraseña !== '' && !!errors.password}
-              />
+            <Form.Control
+              name="contraseña"
+              type="password"
+              placeholder="Nueva contraseña"
+              value={form.contraseña}
+              onChange={handleChange}
+              className="form-input"
+              isInvalid={form.contraseña !== '' && !!errors.password}
+            />
           </Form.Group>
 
           {errors.general && (
@@ -275,10 +287,13 @@ const Profile = () => {
             >
               Guardar Cambios
             </Button>
-            
+
             <Button
               variant="secondary"
-              onClick={() => setEditing(false)}
+              onClick={() => {
+                setEditing(false);
+                loadProfileData(); // Recargamos los datos al cancelar
+              }}
               className="cancel-button px-4 py-2"
             >
               Cancelar
@@ -286,38 +301,38 @@ const Profile = () => {
           </div>
         </Form>
       )}
-
+      
       <style>{`
         .profile-card, .edit-form {
           background: white;
           border: 1px solid #dee2e6;
         }
-        
+
         .avatar-container {
           width: 150px;
           height: 150px;
         }
-        
+
         .avatar-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border: 3px solid #669bbc;
         }
-        
+
         .avatar-placeholder {
           width: 100%;
           height: 100%;
           background-color: #f8f9fa;
           border: 3px dashed #669bbc;
         }
-        
+
         .avatar-upload-container {
           width: 150px;
           height: 150px;
           cursor: pointer;
         }
-        
+
         .avatar-input {
           position: absolute;
           opacity: 0;
@@ -326,14 +341,14 @@ const Profile = () => {
           cursor: pointer;
           z-index: 2;
         }
-        
+
         .avatar-preview {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border: 3px solid #669bbc;
         }
-        
+
         .edit-icon-container {
           position: absolute;
           bottom: 10px;
@@ -347,12 +362,12 @@ const Profile = () => {
           justify-content: center;
           z-index: 3;
         }
-        
+
         .edit-icon {
           color: white;
           font-size: 0.9rem;
         }
-        
+
         .avatar-upload-placeholder {
           width: 100%;
           height: 100%;
@@ -360,35 +375,35 @@ const Profile = () => {
           background: #f8f9fa;
           color: #780000;
         }
-        
+
         .form-label {
           color: #780000;
           font-weight: 500;
         }
-        
+
         .form-input {
           border-radius: 8px;
           border: 2px solid #dee2e6;
           padding: 0.75rem;
         }
-        
+
         .form-input:focus {
           border-color: #669bbc;
           box-shadow: none;
         }
-        
+
         .edit-button, .save-button {
           background-color: #780000;
           border: none;
           font-weight: 600;
           transition: all 0.3s;
         }
-        
+
         .edit-button:hover, .save-button:hover {
           background-color: #5a0000;
           transform: translateY(-1px);
         }
-        
+
         .cancel-button {
           background-color: #f4f3f2;
           color: #780000;
@@ -396,7 +411,7 @@ const Profile = () => {
           font-weight: 600;
           transition: all 0.3s;
         }
-        
+
         .cancel-button:hover {
           background-color: #e2e1e0;
           color: #5a0000;

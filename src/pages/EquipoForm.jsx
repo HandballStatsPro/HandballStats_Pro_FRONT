@@ -17,7 +17,7 @@ const EquipoForm = () => {
     competicion: '',
     idClub: ''
   });
-  
+
   const [entrenadorEmail, setEntrenadorEmail] = useState('');
   const [entrenadores, setEntrenadores] = useState([]);
   const [clubes, setClubes] = useState([]);
@@ -30,7 +30,7 @@ const EquipoForm = () => {
       if (isEditing) {
         try {
           const data = await getEquipoById(id);
-          
+
           setForm({
             nombre: data.nombre || '',
             categoria: data.categoria || '',
@@ -38,13 +38,16 @@ const EquipoForm = () => {
             idClub: (data.club && data.club.idClub) ? data.club.idClub : ''
           });
 
+                    console.log('Datos del equipo al cargar:', data);
+          console.log('form.idClub después de la carga:', form.idClub);
+
           setEntrenadores(Array.isArray(data.entrenadores) ? data.entrenadores : []);
-          
+
         } catch (err) {
           setError('Error cargando equipo');
         }
       }
-      
+
       if (user.rol === 'GestorClub' || user.rol === 'Admin') {
         try {
           const clubesData = await getClubesDisponibles(user.idUsuario);
@@ -57,12 +60,26 @@ const EquipoForm = () => {
     };
     loadData();
   }, [id, user]);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
-    
+
+    // Validaciones en JavaScript
+    if (!form.nombre.trim()) {
+      setError('El nombre del equipo no puede estar vacío.');
+      return;
+    }
+    if (!form.categoria.trim()) {
+      setError('La categoría del equipo no puede estar vacía.');
+      return;
+    }
+    if (!form.competicion.trim()) {
+      setError('La competición del equipo no puede estar vacía.');
+      return;
+    }
+
     try {
       if (isEditing) {
         await updateEquipo(id, form);
@@ -77,17 +94,36 @@ const EquipoForm = () => {
     }
   };
 
-  const handleAddEntrenador = async () => {
+const handleAddEntrenador = async () => {
+    setError('');
+    setSuccess('');
     if (!entrenadorEmail) return setError('Introduce un email');
     try {
-      const usuario = await findUserByEmail(entrenadorEmail);
-      if (usuario.rol !== 'Entrenador') throw new Error('El usuario no es entrenador');
+      let usuario;
+      try {
+        usuario = await findUserByEmail(entrenadorEmail);
+        if (!usuario) {
+          return setError(`No se encontró ningún usuario con el email '${entrenadorEmail}'.`);
+        }
+      } catch (error) {
+        if (error.response?.status === 404) {
+          return setError(`No se encontró ningún usuario con el email '${entrenadorEmail}'.`);
+        }
+        // Si es otro error en la búsqueda, lo logueamos y mostramos un mensaje genérico
+        console.error("Error al buscar usuario por email:", error);
+        return setError('Error al verificar el usuario.');
+      }
+
+      if (usuario.rol !== 'Entrenador') {
+        return setError('El usuario no es entrenador.');
+      }
       await assignEntrenadorByEmail(id, entrenadorEmail);
       setEntrenadores([...entrenadores, usuario]);
       setEntrenadorEmail('');
       setSuccess('Entrenador asignado');
     } catch (err) {
-      setError(err.message || 'Error asignando entrenador');
+      // Capturamos errores que puedan ocurrir durante la asignación
+      setError(err.message || 'Error asignando entrenador.');
     }
   };
 
@@ -114,10 +150,10 @@ const EquipoForm = () => {
         {isEditing ? 'Editar Equipo' : 'Nuevo Equipo'}
       </h2>
 
-      <div className="p-4" style={{ 
-        background: 'white', 
-        borderRadius: '12px', 
-        boxShadow: '0 4px 16px rgba(0,0,0,0.1)' 
+      <div className="p-4" style={{
+        background: 'white',
+        borderRadius: '12px',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.1)'
       }}>
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
@@ -209,6 +245,9 @@ const EquipoForm = () => {
           </div>
         </Form>
 
+        {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+        {success && <Alert variant="success" className="mt-3">{success}</Alert>}
+
         {isEditing && (user.rol === 'Admin' || user.rol === 'GestorClub') && (
           <>
             <hr className="my-5" />
@@ -229,8 +268,8 @@ const EquipoForm = () => {
                       <tr key={entrenador.idUsuario}>
                         <td>{entrenador.nombre}</td>
                         <td className="text-end">
-                          <Button 
-                            variant="danger" 
+                          <Button
+                            variant="danger"
                             size="sm"
                             onClick={() => handleRemoveEntrenador(entrenador.idUsuario)}
                             style={{
@@ -259,7 +298,7 @@ const EquipoForm = () => {
                     />
                   </Col>
                   <Col xs="auto">
-                    <Button 
+                    <Button
                       onClick={handleAddEntrenador}
                       style={{
                         backgroundColor: '#669bbc',
@@ -278,8 +317,6 @@ const EquipoForm = () => {
           </>
         )}
 
-        {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
-        {success && <Alert variant="success" className="mt-3">{success}</Alert>}
       </div>
     </div>
   );
