@@ -136,6 +136,7 @@ const Partidos = () => {
                                 {user.rol === 'Admin' && <th>ID</th>}
                                 <th>Equipo Propio</th>
                                 <th>Rival</th>
+                                <th>Competición</th>
                                 <th>Local</th>
                                 <th>Fecha</th>
                                 <th>Resultado</th>
@@ -150,6 +151,7 @@ const Partidos = () => {
                                     {user.rol === 'Admin' && <td>{p.idPartido}</td>}
                                     <td>{renderNombreEquipo(p.idEquipoPropio)}</td>
                                     <td>{p.nombreRival}</td>
+                                    <td>{p.competicion || '-'}</td>
                                     <td>{p.esLocal ? 'Sí' : 'No'}</td>
                                     <td>{formatDate(p.fecha)}</td>
                                     <td>{p.resultado || '-'}</td>

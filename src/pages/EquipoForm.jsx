@@ -14,9 +14,14 @@ const EquipoForm = () => {
   const [form, setForm] = useState({
     nombre: '',
     categoria: '',
-    competicion: '',
+    temporada: '25-26',
     idClub: ''
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm(prevForm => ({ ...prevForm, [name]: value }));
+  };
 
   const [entrenadorEmail, setEntrenadorEmail] = useState('');
   const [entrenadores, setEntrenadores] = useState([]);
@@ -34,7 +39,7 @@ const EquipoForm = () => {
           setForm({
             nombre: data.nombre || '',
             categoria: data.categoria || '',
-            competicion: data.competicion || '',
+            temporada: data.temporada || '',
             idClub: (data.club && data.club.idClub) ? data.club.idClub : ''
           });
 
@@ -75,8 +80,8 @@ const EquipoForm = () => {
       setError('La categoría del equipo no puede estar vacía.');
       return;
     }
-    if (!form.competicion.trim()) {
-      setError('La competición del equipo no puede estar vacía.');
+    if (!form.temporada.trim()) {
+      setError('La temporada del equipo no puede estar vacía.');
       return;
     }
 
@@ -163,7 +168,7 @@ const handleAddEntrenador = async () => {
                 <Form.Control
                   name="nombre"
                   value={form.nombre}
-                  onChange={(e) => setForm({...form, nombre: e.target.value})}
+                  onChange={handleChange}
                   required
                   style={{ borderRadius: '8px' }}
                 />
@@ -175,7 +180,7 @@ const handleAddEntrenador = async () => {
                 <Form.Control
                   name="categoria"
                   value={form.categoria}
-                  onChange={(e) => setForm({...form, categoria: e.target.value})}
+                  onChange={handleChange}
                   style={{ borderRadius: '8px' }}
                 />
               </Form.Group>
@@ -184,14 +189,17 @@ const handleAddEntrenador = async () => {
 
           <Row className="mb-3">
             <Col md={6}>
-              <Form.Group controlId="competicion">
-                <Form.Label>Competición</Form.Label>
-                <Form.Control
-                  name="competicion"
-                  value={form.competicion}
-                  onChange={(e) => setForm({...form, competicion: e.target.value})}
+              <Form.Group controlId="temporada">
+                <Form.Label>Temporada</Form.Label>
+                <Form.Select
+                  name="temporada"
+                  value={form.temporada}
+                  onChange={handleChange}
+                  required
                   style={{ borderRadius: '8px' }}
-                />
+                >
+                  <option value="25-26">25-26</option>
+                </Form.Select>
               </Form.Group>
             </Col>
             {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
@@ -200,7 +208,7 @@ const handleAddEntrenador = async () => {
                   <Form.Label>Club</Form.Label>
                   <Form.Select
                     value={form.idClub}
-                    onChange={(e) => setForm({...form, idClub: e.target.value})}
+                    onChange={handleChange}
                     style={{ borderRadius: '8px' }}
                   >
                     <option value="">Seleccionar club</option>

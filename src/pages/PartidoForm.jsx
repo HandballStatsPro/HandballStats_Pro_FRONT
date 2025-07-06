@@ -16,6 +16,7 @@ const PartidoForm = () => {
     esLocal: true,
     fecha: '',
     resultado: '',
+    competicion: ''
   });
 
   const [equipos, setEquipos] = useState([]);
@@ -41,6 +42,7 @@ const PartidoForm = () => {
             esLocal: p.esLocal,
             fecha: p.fecha.split('T')[0],
             resultado: p.resultado || '',
+            competicion: p.competicion || ''
           });
         }
       } catch (err) {
@@ -185,6 +187,20 @@ const PartidoForm = () => {
                   value={form.resultado}
                   onChange={handleChange}
                   style={{ borderRadius: '8px' }}
+                />
+              </Form.Group>
+            </Col>
+            
+            <Col md={6}>
+              <Form.Group controlId="competicion">
+                <Form.Label>Competición (opcional)</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="competicion"
+                  value={form.competicion}
+                  onChange={handleChange}
+                  style={{ borderRadius: '8px' }}
+                  placeholder="Añade aquí la competición..."
                 />
               </Form.Group>
             </Col>
