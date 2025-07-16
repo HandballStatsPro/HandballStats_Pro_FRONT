@@ -60,6 +60,10 @@ export default function App() {
               <Route path="/partidos"       element={<Partidos   />} />
               <Route path="/partidos/new"   element={<PartidoForm />} />
               <Route path="/partidos/:id"   element={<PartidoForm />} />
+              <Route path="/partidos/:id/acciones" element={<MatchActionsView />} />
+              <Route path="/acciones"       element={<Acciones />} />
+              <Route path="/acciones/new"   element={<AccionForm />} />
+              <Route path="/acciones/:id"   element={<AccionForm />} />
              </Route>
           </Route>
           <Route path="/estadisticas" element={<Estadisticas />} />
