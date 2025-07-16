@@ -14,6 +14,9 @@ import EquipoForm from './pages/EquipoForm';
 import Partidos    from "./pages/Partidos";
 import PartidoForm from "./pages/PartidoForm";
 import Estadisticas from './pages/Estadisticas';
+import Acciones from './pages/Acciones';
+import AccionForm from './pages/AccionForm';
+import MatchActionsView from './pages/MatchActionsView';
 
 
 export default function App() {
