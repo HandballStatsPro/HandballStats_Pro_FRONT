@@ -171,6 +171,19 @@ const Partidos = () => {
                                         >
                                             Editar
                                         </Button>
+                                        <Button
+                                            size="sm"
+                                            className="me-2"
+                                            style={{
+                                                backgroundColor: '#28a745',
+                                                border: 'none',
+                                                borderRadius: '6px',
+                                                fontWeight: '500',
+                                            }}
+                                            onClick={() => navigate(`/partidos/${p.idPartido}/acciones`)}
+                                        >
+                                            Acciones
+                                        </Button>
                                         {['Admin', 'GestorClub'].includes(user.rol) && (
                                             <Button
                                                 size="sm"
