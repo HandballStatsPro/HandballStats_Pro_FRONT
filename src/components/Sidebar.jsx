@@ -44,6 +44,7 @@ const Sidebar = ({ onToggle }) => {
       : []),
     { to: '/equipo', icon: <FaUsersCog />, label: 'Equipos' },
     { to: '/partidos', icon: <FaFutbol />, label: 'Partidos' },
+    { to: '/acciones', icon: <FaRunning />, label: 'Acciones' },
     { to: '/estadisticas', icon: <FaChartBar />, label: 'Estadísticas' },
   ];
 
