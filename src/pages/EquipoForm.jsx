@@ -14,6 +14,7 @@ const EquipoForm = () => {
   const [form, setForm] = useState({
     nombre: '',
     categoria: '',
+    sexo: 'MASCULINO',
     temporada: '25-26',
     idClub: ''
   });
@@ -39,12 +40,10 @@ const EquipoForm = () => {
           setForm({
             nombre: data.nombre || '',
             categoria: data.categoria || '',
+            sexo: data.sexo || 'MASCULINO',
             temporada: data.temporada || '',
             idClub: (data.club && data.club.idClub) ? data.club.idClub : ''
           });
-
-                    console.log('Datos del equipo al cargar:', data);
-          console.log('form.idClub después de la carga:', form.idClub);
 
           setEntrenadores(Array.isArray(data.entrenadores) ? data.entrenadores : []);
 
@@ -202,11 +201,24 @@ const handleAddEntrenador = async () => {
                 </Form.Select>
               </Form.Group>
             </Col>
+            <Col md={6}>
+              <Form.Group controlId="sexo">
+                <Form.Label>Sexo</Form.Label>
+                <Form.Select name="sexo" value={form.sexo} onChange={handleChange} required style={{ borderRadius: '8px' }}>
+                  <option value="MASCULINO">Masculino</option>
+                  <option value="FEMENINO">Femenino</option>
+                  <option value="MIXTO">Mixto</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>            
+            </Row>
+            <Row>
             {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
               <Col md={6}>
                 <Form.Group controlId="club">
                   <Form.Label>Club</Form.Label>
                   <Form.Select
+                    name="idClub"
                     value={form.idClub}
                     onChange={handleChange}
                     style={{ borderRadius: '8px' }}

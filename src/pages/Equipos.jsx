@@ -144,6 +144,7 @@ const Equipos = () => {
                 {user.rol === 'Admin' && <th>Id</th>}                
                 <th>Nombre</th>
                 <th>Categoría</th>
+                <th>Sexo</th>
                 <th>Temporada</th>
                 <th>Club</th>
                 {(user.rol === 'Admin' || user.rol === 'GestorClub') && <th>Entrenadores</th>}
@@ -157,6 +158,9 @@ const Equipos = () => {
                   {user.rol === 'Admin' && <td>{equipo.idEquipo}</td>}
                   <td>{equipo.nombre}</td>
                   <td>{equipo.categoria}</td>
+                  <td>
+                    {equipo.sexo ? equipo.sexo.charAt(0) + equipo.sexo.slice(1).toLowerCase() : '-'}
+                  </td>
                   <td>{equipo.temporada}</td>
                   <td>{equipo.clubNombre || '-'}</td>
                  {(user.rol === 'Admin' || user.rol === 'GestorClub') && (
