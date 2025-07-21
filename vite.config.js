@@ -12,7 +12,7 @@ export default defineConfig({
         changeOrigin: true,
         secure: false
       },
-      '^/(usuarios|club|equipo|partidos|estadisticas)': {
+      '^/(usuarios|club|equipo|partidos|estadisticas|accion)': {
         target: 'http://localhost:8080',
         changeOrigin: true,
         secure: false
