@@ -169,16 +169,31 @@ const Partidos = () => {
                                         </Button>
                                         <Button
                                             size="sm"
+                                            className="me-2"
                                             style={{
-                                                backgroundColor: '#780000',
+                                                backgroundColor: '#28a745',
                                                 border: 'none',
                                                 borderRadius: '6px',
                                                 fontWeight: '500',
                                             }}
-                                            onClick={() => handleDelete(p.idPartido)}
+                                            onClick={() => navigate(`/partidos/${p.idPartido}/acciones`)}
                                         >
-                                            Eliminar
+                                            Acciones
                                         </Button>
+                                        {['Admin', 'GestorClub'].includes(user.rol) && (
+                                            <Button
+                                                size="sm"
+                                                style={{
+                                                    backgroundColor: '#780000',
+                                                    border: 'none',
+                                                    borderRadius: '6px',
+                                                    fontWeight: '500',
+                                                }}
+                                                onClick={() => handleDelete(p.idPartido)}
+                                            >
+                                                Eliminar
+                                            </Button>
+                                        )}
                                     </td>
                                 </tr>
                             ))}

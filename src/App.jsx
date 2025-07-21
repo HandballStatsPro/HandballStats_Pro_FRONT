@@ -14,6 +14,9 @@ import EquipoForm from './pages/EquipoForm';
 import Partidos    from "./pages/Partidos";
 import PartidoForm from "./pages/PartidoForm";
 import Estadisticas from './pages/Estadisticas';
+import Acciones from './pages/Acciones';
+import AccionForm from './pages/AccionForm';
+import MatchActionsView from './pages/MatchActionsView';
 
 
 export default function App() {
@@ -57,6 +60,10 @@ export default function App() {
               <Route path="/partidos"       element={<Partidos   />} />
               <Route path="/partidos/new"   element={<PartidoForm />} />
               <Route path="/partidos/:id"   element={<PartidoForm />} />
+              <Route path="/partidos/:id/acciones" element={<MatchActionsView />} />
+              <Route path="/acciones"       element={<Acciones />} />
+              <Route path="/acciones/new"   element={<AccionForm />} />
+              <Route path="/acciones/:id"   element={<AccionForm />} />
              </Route>
           </Route>
           <Route path="/estadisticas" element={<Estadisticas />} />
