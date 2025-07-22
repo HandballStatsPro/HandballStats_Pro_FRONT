@@ -1,551 +1,339 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form, Badge, Alert, Spinner } from 'react-bootstrap';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Container, Row, Col, Card, Button, Badge, Alert, Spinner } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getPartidoById } from '../services/partidoService';
-import { 
-  getAccionesByPartido, 
-  createAccion, 
-  EQUIPO_ACCION, 
-  TIPO_ATAQUE, 
-  ORIGEN_ACCION, 
-  EVENTO, 
-  getValidDetalleFinalizacion,
+import {
+  getAccionesByPartido,
+  createAccion,
+  EQUIPO_ACCION,
+  TIPO_ATAQUE,
+  ORIGEN_ACCION,
+  EVENTO,
+  getValidTipoAtaque,
   getValidDetalleEvento,
   shouldChangePossession,
-  validateAction
 } from '../services/accionService';
-import HandballCourt from '../components/HandballCourt';
+import CourtGridSelector from '../components/CourtGridSelector';
 
-const MatchActionsView = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const { user } = useAuth();
-  
-  const [loading, setLoading] = useState(true);
-  const [partido, setPartido] = useState(null);
-  const [acciones, setAcciones] = useState([]);
-  const [error, setError] = useState('');
-  const [currentPosesion, setCurrentPosesion] = useState(1);
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  
-  // Estado del formulario de nueva acción
-  const [newAction, setNewAction] = useState({
-    idPartido: parseInt(id),
+const initialActionState = {
+    idPartido: 0,
     idPosesion: 1,
     equipoAccion: '',
     tipoAtaque: '',
-    origenAccion: '',
+    origenAccion: ORIGEN_ACCION.JUEGO_CONTINUADO,
     evento: '',
     detalleFinalizacion: '',
     zonaLanzamiento: '',
     detalleEvento: '',
     cambioPosesion: false
-  });
-  
-  const [formValidation, setFormValidation] = useState([]);
-  const [showCourtSelector, setShowCourtSelector] = useState(false);
+};
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [partidoRes, accionesRes] = await Promise.all([
-          getPartidoById(id),
-          getAccionesByPartido(id)
-        ]);
-        
-        setPartido(partidoRes.data);
-        setAcciones(accionesRes.data || []);
-        
-        // Calcular la posesión actual
-        const ultimaAccion = accionesRes.data?.[accionesRes.data.length - 1];
-        if (ultimaAccion) {
-          setCurrentPosesion(ultimaAccion.cambioPosesion ? ultimaAccion.idPosesion + 1 : ultimaAccion.idPosesion);
+const MatchActionsView = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    
+    const [partido, setPartido] = useState(null);
+    const [acciones, setAcciones] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+    const [currentPosesion, setCurrentPosesion] = useState(1);
+    const [selectedTeam, setSelectedTeam] = useState(null);
+
+    const [newAction, setNewAction] = useState({
+        ...initialActionState,
+        idPartido: parseInt(id)
+    });
+
+    const isActionComplete = useMemo(() => {
+        if (!newAction.equipoAccion || !newAction.tipoAtaque || !newAction.origenAccion || !newAction.evento) {
+            return false;
         }
-        
-        setNewAction(prev => ({
-          ...prev,
-          idPosesion: currentPosesion
-        }));
-        
-      } catch (err) {
-        setError('Error cargando datos del partido');
-      } finally {
-        setLoading(false);
-      }
+
+        if ([EVENTO.GOL, EVENTO.LANZAMIENTO_PARADO, EVENTO.LANZAMIENTO_FUERA].includes(newAction.evento)) {
+            if (!newAction.detalleFinalizacion || !newAction.zonaLanzamiento) return false;
+        }
+
+        if ([EVENTO.PERDIDA, EVENTO.LANZAMIENTO_PARADO, EVENTO.LANZAMIENTO_FUERA].includes(newAction.evento)) {
+            if (!newAction.detalleEvento) return false;
+        }
+
+        if (newAction.origenAccion === ORIGEN_ACCION.SIETE_METROS && newAction.tipoAtaque !== TIPO_ATAQUE.POSICIONAL) {
+            return false;
+        }
+
+        return true;
+    }, [newAction]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const [partidoRes, accionesRes] = await Promise.all([ getPartidoById(id), getAccionesByPartido(id) ]);
+            setPartido(partidoRes.data);
+            const loadedAcciones = accionesRes.data || [];
+            setAcciones(loadedAcciones);
+    
+            const ultimaAccion = loadedAcciones[loadedAcciones.length - 1];
+            const newPosesion = ultimaAccion ? (ultimaAccion.cambioPosesion ? ultimaAccion.idPosesion + 1 : ultimaAccion.idPosesion) : 1;
+            setCurrentPosesion(newPosesion);
+            setNewAction(prev => ({ ...prev, idPosesion: newPosesion }));
+    
+          } catch (err) {
+            setError('Error cargando datos del partido');
+          } finally {
+            setLoading(false);
+          }
+        };
+        fetchData();
+    }, [id]);
+
+    useEffect(() => {
+        if (newAction.evento && newAction.detalleEvento) {
+            const shouldChange = shouldChangePossession(newAction.evento, newAction.detalleEvento);
+            setNewAction(prev => ({ ...prev, cambioPosesion: shouldChange }));
+        }
+    }, [newAction.evento, newAction.detalleEvento]);
+
+    const handleFieldChange = (field, value) => {
+        setNewAction(prev => {
+            let updated = { ...prev, [field]: value };
+
+            if (field === 'origenAccion') {
+                updated.tipoAtaque = '';
+            }
+            if (field === 'tipoAtaque') {
+                updated.evento = '';
+            }
+            if (field === 'evento') {
+                updated.detalleEvento = '';
+                updated.detalleFinalizacion = '';
+                updated.zonaLanzamiento = '';
+            }
+            return updated;
+        });
+    };
+
+    const handleTeamSelect = (team) => {
+        setSelectedTeam(team);
+        setNewAction(prev => ({ ...prev, equipoAccion: team, idPosesion: currentPosesion }));
+    };
+
+    const handleSubmitAction = async () => {
+        if (!isActionComplete) {
+            setError("Faltan campos obligatorios por seleccionar.");
+            return;
+        }
+        setError('');
+
+        try {
+            await createAccion(newAction);
+            const accionesRes = await getAccionesByPartido(id);
+            const updatedAcciones = accionesRes.data || [];
+            setAcciones(updatedAcciones);
+
+            const newPosesionValue = newAction.cambioPosesion ? currentPosesion + 1 : currentPosesion;
+            setCurrentPosesion(newPosesionValue);
+
+            setNewAction({
+                ...initialActionState,
+                idPartido: parseInt(id),
+                idPosesion: newPosesionValue
+            });
+            setSelectedTeam(null);
+        } catch (err) {
+            setError('Error al guardar la acción: ' + (err.response?.data?.message || err.message));
+        }
     };
     
-    fetchData();
-  }, [id]);
-
-  // Actualizar cambio de posesión automáticamente
-  useEffect(() => {
-    if (newAction.evento && newAction.detalleEvento) {
-      const shouldChange = shouldChangePossession(newAction.evento, newAction.detalleEvento);
-      setNewAction(prev => ({
-        ...prev,
-        cambioPosesion: shouldChange
-      }));
-    }
-  }, [newAction.evento, newAction.detalleEvento]);
-
-  // Validar formulario en tiempo real
-  useEffect(() => {
-    const errors = validateAction(newAction);
-    setFormValidation(errors);
-  }, [newAction]);
-
-  const handleFieldChange = (field, value) => {
-    setNewAction(prev => {
-      const updated = { ...prev, [field]: value };
-      
-      // Limpiar campos dependientes cuando cambian los campos principales
-      if (field === 'tipoAtaque' || field === 'origenAccion') {
-        updated.detalleFinalizacion = '';
-      }
-      
-      if (field === 'evento') {
-        updated.detalleEvento = '';
-        updated.detalleFinalizacion = '';
-        updated.zonaLanzamiento = '';
-      }
-      
-      return updated;
-    });
-  };
-
-  const handleTeamSelect = (team) => {
-    setSelectedTeam(team);
-    setNewAction(prev => ({
-      ...prev,
-      equipoAccion: team,
-      idPosesion: currentPosesion
-    }));
-  };
-
-  const handleSubmitAction = async () => {
-    try {
-      const errors = validateAction(newAction);
-      if (errors.length > 0) {
-        setError(errors.join('. '));
-        return;
-      }
-
-      await createAccion(newAction);
-      
-      // Recargar acciones
-      const accionesRes = await getAccionesByPartido(id);
-      setAcciones(accionesRes.data || []);
-      
-      // Actualizar posesión si cambió
-      if (newAction.cambioPosesion) {
-        setCurrentPosesion(prev => prev + 1);
-      }
-      
-      // Resetear formulario
-      setNewAction({
-        idPartido: parseInt(id),
-        idPosesion: newAction.cambioPosesion ? currentPosesion + 1 : currentPosesion,
-        equipoAccion: '',
-        tipoAtaque: '',
-        origenAccion: '',
-        evento: '',
-        detalleFinalizacion: '',
-        zonaLanzamiento: '',
-        detalleEvento: '',
-        cambioPosesion: false
-      });
-      
-      setSelectedTeam(null);
-      setShowCourtSelector(false);
-      setError('');
-      
-    } catch (err) {
-      setError('Error creando acción: ' + (err.response?.data?.message || err.message));
-    }
-  };
-
-  const getAvailableOrigenAccion = () => {
-    const lastAction = acciones[acciones.length - 1];
+    const getAvailableOrigenAccion = () => {
+        const lastAction = acciones[acciones.length - 1];
+        if (!lastAction || lastAction.cambioPosesion) {
+          return [ORIGEN_ACCION.JUEGO_CONTINUADO, ORIGEN_ACCION.SIETE_METROS];
+        } else {
+          return [ORIGEN_ACCION.REBOTE_DIRECTO, ORIGEN_ACCION.REBOTE_INDIRECTO];
+        }
+      };
     
-    if (!lastAction) {
-      return [ORIGEN_ACCION.JUEGO_CONTINUADO];
-    }
+      const shouldShowGridSelector = () => {
+        return newAction.evento &&
+          newAction.tipoAtaque &&
+          [EVENTO.GOL, EVENTO.LANZAMIENTO_PARADO, EVENTO.LANZAMIENTO_FUERA].includes(newAction.evento);
+      };
     
-    if (lastAction.cambioPosesion) {
-      return [ORIGEN_ACCION.JUEGO_CONTINUADO, ORIGEN_ACCION.SIETE_METROS];
-    } else {
-      return [ORIGEN_ACCION.REBOTE_DIRECTO, ORIGEN_ACCION.REBOTE_INDIRECTO];
-    }
-  };
+      const handleGridSelection = (zona, detalle) => {
+        handleFieldChange('zonaLanzamiento', zona);
+        handleFieldChange('detalleFinalizacion', detalle);
+      };
 
-  const isFieldRequired = (field) => {
-    switch (field) {
-      case 'detalleFinalizacion':
-      case 'zonaLanzamiento':
-        return [EVENTO.GOL, EVENTO.LANZAMIENTO_PARADO, EVENTO.LANZAMIENTO_FUERA].includes(newAction.evento);
-      case 'detalleEvento':
-        return [EVENTO.LANZAMIENTO_PARADO, EVENTO.LANZAMIENTO_FUERA, EVENTO.PERDIDA].includes(newAction.evento);
-      default:
-        return true;
-    }
-  };
+    if (loading) return <div className="text-center mt-5"><Spinner /></div>;
 
-  const shouldShowCourtSelector = () => {
-    return newAction.evento && [EVENTO.GOL, EVENTO.LANZAMIENTO_PARADO, EVENTO.LANZAMIENTO_FUERA].includes(newAction.evento);
-  };
-
-  useEffect(() => {
-    setShowCourtSelector(shouldShowCourtSelector());
-  }, [newAction.evento]);
-
-  if (loading) {
     return (
-      <div className="text-center mt-5">
-        <Spinner animation="border" variant="primary" />
-        <p>Cargando partido...</p>
-      </div>
-    );
-  }
+        <Container fluid className="mt-3">
+            <Row>
+                <Col xs={12}>
+                <Card className="mb-4">
+                    <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
+                        <h4 className="mb-0">{partido.nombreEquipoLocal} vs {partido.nombreEquipoVisitante}</h4>
+                        <small>{new Date(partido.fecha).toLocaleDateString()} - {partido.competicion || 'Sin competición'}{partido.resultado && ` - Resultado: ${partido.resultado}`}</small>
+                    </Card.Header>
+                    <Card.Body>
+                        <div className="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>Posesión actual: {currentPosesion}</strong><br />
+                                <small className="text-muted">Total de acciones: {acciones.length}</small>
+                            </div>
+                            <Button variant="outline-secondary" onClick={() => navigate('/partidos')}>Volver a Partidos</Button>
+                        </div>
+                    </Card.Body>
+                </Card>
+                </Col>
+            </Row>
 
-  if (!partido) {
-    return (
-      <Container className="mt-5">
-        <Alert variant="danger">Partido no encontrado</Alert>
-      </Container>
-    );
-  }
+            <Row>
+                {[EQUIPO_ACCION.LOCAL, EQUIPO_ACCION.VISITANTE].map(teamType => (
+                    <Col md={6} key={teamType}>
+                        <Card 
+                            className={`team-card ${selectedTeam === teamType ? 'selected' : ''}`} 
+                            style={{
+                                minHeight: '300px',
+                                border: selectedTeam === teamType ? `3px solid ${teamType === EQUIPO_ACCION.LOCAL ? '#669bbc' : '#780000'}` : '1px solid #dee2e6',
+                                backgroundColor: selectedTeam === teamType ? '#f8f9fa' : 'white',
+                                transition: 'all 0.3s ease'
+                            }}
+                        >
+                            <Card.Header style={{backgroundColor: teamType === EQUIPO_ACCION.LOCAL ? '#669bbc' : '#780000', color: 'white', cursor: 'pointer'}} onClick={() => handleTeamSelect(teamType)}>
+                                <h5 className="mb-0">{teamType === EQUIPO_ACCION.LOCAL ? partido.nombreEquipoLocal : partido.nombreEquipoVisitante} <Badge bg="light" text="dark" className="ms-2">{teamType}</Badge></h5>
+                            </Card.Header>
+                            <Card.Body>
+                                {selectedTeam === teamType && (
+                                    <div className="action-form">
+                                        <div>
+                                            <h5 className="mb-2">Origen</h5>
+                                            {getAvailableOrigenAccion().map(origen => (
+                                                <Button key={origen} variant={newAction.origenAccion === origen ? "info" : "outline-info"} onClick={() => handleFieldChange('origenAccion', origen)} className="me-2 mb-2">{origen.replace(/_/g, ' ')}</Button>
+                                            ))}
+                                        </div>
 
-  return (
-    <Container fluid className="mt-3">
-      <Row>
-        <Col xs={12}>
-          <Card className="mb-4">
-            <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
-              <h4 className="mb-0">
-                {partido.nombreEquipoLocal} vs {partido.nombreEquipoVisitante}
-              </h4>
-              <small>
-                {partido.fecha} - {partido.competicion || 'Sin competición'}
-                {partido.resultado && ` - Resultado: ${partido.resultado}`}
-              </small>
-            </Card.Header>
-            <Card.Body>
-              <div className="d-flex justify-content-between align-items-center">
-                <div>
-                  <strong>Posesión actual: {currentPosesion}</strong>
-                  <br />
-                  <small className="text-muted">
-                    Total de acciones: {acciones.length}
-                  </small>
-                </div>
-                <Button
-                  variant="outline-secondary"
-                  onClick={() => navigate('/partidos')}
-                >
-                  Volver a Partidos
-                </Button>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+                                        {newAction.origenAccion && (
+                                            <div className="mt-3">
+                                                <h5 className="mb-2">Tipo de Ataque</h5>
+                                                {getValidTipoAtaque(newAction.origenAccion).map(tipo => (
+                                                    <Button key={tipo} variant={newAction.tipoAtaque === tipo ? "primary" : "outline-primary"} onClick={() => handleFieldChange('tipoAtaque', tipo)} className="me-2 mb-2">{tipo}</Button>
+                                                ))}
+                                            </div>
+                                        )}
 
-      <Row>
-        {/* Equipo Local */}
-        <Col md={6}>
-          <Card 
-            className={`team-card ${selectedTeam === EQUIPO_ACCION.LOCAL ? 'selected' : ''}`}
-            style={{ 
-              minHeight: '300px',
-              border: selectedTeam === EQUIPO_ACCION.LOCAL ? '3px solid #669bbc' : '1px solid #dee2e6',
-              backgroundColor: selectedTeam === EQUIPO_ACCION.LOCAL ? '#f8f9fa' : 'white'
-            }}
-          >
-            <Card.Header 
-              style={{ 
-                backgroundColor: '#669bbc', 
-                color: 'white',
-                cursor: 'pointer'
-              }}
-              onClick={() => handleTeamSelect(EQUIPO_ACCION.LOCAL)}
-            >
-              <h5 className="mb-0">
-                {partido.nombreEquipoLocal}
-                <Badge bg="light" text="dark" className="ms-2">LOCAL</Badge>
-              </h5>
-            </Card.Header>
-            <Card.Body>
-              {selectedTeam === EQUIPO_ACCION.LOCAL && (
-                <div className="action-form">
-                  <Form.Group className="mb-3">
-                    <Form.Label>Tipo de Ataque</Form.Label>
-                    <Form.Select
-                      value={newAction.tipoAtaque}
-                      onChange={(e) => handleFieldChange('tipoAtaque', e.target.value)}
-                      required
-                    >
-                      <option value="">Selecciona tipo de ataque</option>
-                      <option value={TIPO_ATAQUE.POSICIONAL}>Posicional</option>
-                      <option value={TIPO_ATAQUE.CONTRAATAQUE}>Contraataque</option>
-                    </Form.Select>
-                  </Form.Group>
+                                        {newAction.tipoAtaque && (
+                                            <div className="mt-3">
+                                                <h5 className="mb-2">Evento</h5>
+                                                {Object.values(EVENTO).map(evento => (<Button key={evento} variant={newAction.evento === evento ? "success" : "outline-success"} onClick={() => handleFieldChange('evento', evento)} className="me-2 mb-2">{evento.replace(/_/g, ' ')}</Button>))}
+                                            </div>
+                                        )}
 
-                  <Form.Group className="mb-3">
-                    <Form.Label>Origen de la Acción</Form.Label>
-                    <Form.Select
-                      value={newAction.origenAccion}
-                      onChange={(e) => handleFieldChange('origenAccion', e.target.value)}
-                      required
-                    >
-                      <option value="">Selecciona origen</option>
-                      {getAvailableOrigenAccion().map(origen => (
-                        <option key={origen} value={origen}>{origen}</option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3">
-                    <Form.Label>Evento</Form.Label>
-                    <Form.Select
-                      value={newAction.evento}
-                      onChange={(e) => handleFieldChange('evento', e.target.value)}
-                      required
-                    >
-                      <option value="">Selecciona evento</option>
-                      <option value={EVENTO.GOL}>Gol</option>
-                      <option value={EVENTO.LANZAMIENTO_PARADO}>Lanzamiento Parado</option>
-                      <option value={EVENTO.LANZAMIENTO_FUERA}>Lanzamiento Fuera</option>
-                      <option value={EVENTO.PERDIDA}>Pérdida</option>
-                    </Form.Select>
-                  </Form.Group>
-
-                  {isFieldRequired('detalleEvento') && (
-                    <Form.Group className="mb-3">
-                      <Form.Label>Detalle del Evento</Form.Label>
-                      <Form.Select
-                        value={newAction.detalleEvento}
-                        onChange={(e) => handleFieldChange('detalleEvento', e.target.value)}
-                        required
-                      >
-                        <option value="">Selecciona detalle</option>
-                        {getValidDetalleEvento(newAction.evento).map(detalle => (
-                          <option key={detalle} value={detalle}>{detalle}</option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  )}
-                </div>
-              )}
-            </Card.Body>
-          </Card>
-        </Col>
-
-        {/* Equipo Visitante */}
-        <Col md={6}>
-          <Card 
-            className={`team-card ${selectedTeam === EQUIPO_ACCION.VISITANTE ? 'selected' : ''}`}
-            style={{ 
-              minHeight: '300px',
-              border: selectedTeam === EQUIPO_ACCION.VISITANTE ? '3px solid #780000' : '1px solid #dee2e6',
-              backgroundColor: selectedTeam === EQUIPO_ACCION.VISITANTE ? '#f8f9fa' : 'white'
-            }}
-          >
-            <Card.Header 
-              style={{ 
-                backgroundColor: '#780000', 
-                color: 'white',
-                cursor: 'pointer'
-              }}
-              onClick={() => handleTeamSelect(EQUIPO_ACCION.VISITANTE)}
-            >
-              <h5 className="mb-0">
-                {partido.nombreEquipoVisitante}
-                <Badge bg="light" text="dark" className="ms-2">VISITANTE</Badge>
-              </h5>
-            </Card.Header>
-            <Card.Body>
-              {selectedTeam === EQUIPO_ACCION.VISITANTE && (
-                <div className="action-form">
-                  <Form.Group className="mb-3">
-                    <Form.Label>Tipo de Ataque</Form.Label>
-                    <Form.Select
-                      value={newAction.tipoAtaque}
-                      onChange={(e) => handleFieldChange('tipoAtaque', e.target.value)}
-                      required
-                    >
-                      <option value="">Selecciona tipo de ataque</option>
-                      <option value={TIPO_ATAQUE.POSICIONAL}>Posicional</option>
-                      <option value={TIPO_ATAQUE.CONTRAATAQUE}>Contraataque</option>
-                    </Form.Select>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3">
-                    <Form.Label>Origen de la Acción</Form.Label>
-                    <Form.Select
-                      value={newAction.origenAccion}
-                      onChange={(e) => handleFieldChange('origenAccion', e.target.value)}
-                      required
-                    >
-                      <option value="">Selecciona origen</option>
-                      {getAvailableOrigenAccion().map(origen => (
-                        <option key={origen} value={origen}>{origen}</option>
-                      ))}
-                    </Form.Select>
-                  </Form.Group>
-
-                  <Form.Group className="mb-3">
-                    <Form.Label>Evento</Form.Label>
-                    <Form.Select
-                      value={newAction.evento}
-                      onChange={(e) => handleFieldChange('evento', e.target.value)}
-                      required
-                    >
-                      <option value="">Selecciona evento</option>
-                      <option value={EVENTO.GOL}>Gol</option>
-                      <option value={EVENTO.LANZAMIENTO_PARADO}>Lanzamiento Parado</option>
-                      <option value={EVENTO.LANZAMIENTO_FUERA}>Lanzamiento Fuera</option>
-                      <option value={EVENTO.PERDIDA}>Pérdida</option>
-                    </Form.Select>
-                  </Form.Group>
-
-                  {isFieldRequired('detalleEvento') && (
-                    <Form.Group className="mb-3">
-                      <Form.Label>Detalle del Evento</Form.Label>
-                      <Form.Select
-                        value={newAction.detalleEvento}
-                        onChange={(e) => handleFieldChange('detalleEvento', e.target.value)}
-                        required
-                      >
-                        <option value="">Selecciona detalle</option>
-                        {getValidDetalleEvento(newAction.evento).map(detalle => (
-                          <option key={detalle} value={detalle}>{detalle}</option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  )}
-                </div>
-              )}
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
-      {/* Selector de cancha */}
-      {showCourtSelector && selectedTeam && (
-        <Row className="mt-4">
-          <Col xs={12}>
-            <Card>
-              <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
-                <h6 className="mb-0">Selección de Zona y Detalle</h6>
-              </Card.Header>
-              <Card.Body>
-                <HandballCourt
-                  selectedZona={newAction.zonaLanzamiento}
-                  onZonaChange={(zona) => handleFieldChange('zonaLanzamiento', zona)}
-                  selectedDetalle={newAction.detalleFinalizacion}
-                  onDetalleChange={(detalle) => handleFieldChange('detalleFinalizacion', detalle)}
-                  tipoAtaque={newAction.tipoAtaque}
-                />
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      )}
-
-      {/* Errores y botones de acción */}
-      {error && (
-        <Row className="mt-3">
-          <Col xs={12}>
-            <Alert variant="danger">{error}</Alert>
-          </Col>
-        </Row>
-      )}
-
-      {formValidation.length > 0 && (
-        <Row className="mt-3">
-          <Col xs={12}>
-            <Alert variant="warning">
-              <ul className="mb-0">
-                {formValidation.map((error, index) => (
-                  <li key={index}>{error}</li>
+                                        {newAction.evento && getValidDetalleEvento(newAction.evento).length > 0 && (
+                                            <div className="mt-3">
+                                                <h5 className="mb-2">Detalle del Evento</h5>
+                                                {getValidDetalleEvento(newAction.evento).map(detalle => (
+                                                    <Button key={detalle} variant={newAction.detalleEvento === detalle ? "warning" : "outline-warning"} onClick={() => handleFieldChange('detalleEvento', detalle)} className="me-2 mb-2">{detalle.replace(/_/g, ' ')}</Button>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </Card.Body>
+                        </Card>
+                    </Col>
                 ))}
-              </ul>
-            </Alert>
-          </Col>
-        </Row>
-      )}
+            </Row>
 
-      {selectedTeam && (
-        <Row className="mt-3">
-          <Col xs={12} className="text-center">
-            <Button
-              style={{ backgroundColor: '#669bbc', border: 'none' }}
-              onClick={handleSubmitAction}
-              disabled={formValidation.length > 0 || !newAction.evento}
-              size="lg"
-            >
-              Registrar Acción
-            </Button>
-            <Button
-              variant="outline-secondary"
-              className="ms-3"
-              onClick={() => {
-                setSelectedTeam(null);
-                setNewAction({
-                  idPartido: parseInt(id),
-                  idPosesion: currentPosesion,
-                  equipoAccion: '',
-                  tipoAtaque: '',
-                  origenAccion: '',
-                  evento: '',
-                  detalleFinalizacion: '',
-                  zonaLanzamiento: '',
-                  detalleEvento: '',
-                  cambioPosesion: false
-                });
-              }}
-            >
-              Cancelar
-            </Button>
-          </Col>
-        </Row>
-      )}
+            {shouldShowGridSelector() && (
+                <Row className="mt-4">
+                    <Col xs={12}>
+                        <Card>
+                            <Card.Header>
+                                <h6 className="mb-0">Define la Finalización</h6>
+                            </Card.Header>
+                            <Card.Body>
+                                <CourtGridSelector 
+                                    onSelection={handleGridSelection} 
+                                    tipoAtaque={newAction.tipoAtaque} 
+                                    selectedDetalle={newAction.detalleFinalizacion} 
+                                    selectedZona={newAction.zonaLanzamiento} 
+                                />
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            )}
+            
+            <div className="mt-3">
+                {error && <Alert variant="danger" onClose={() => setError('')} dismissible>{error}</Alert>}
+            </div>
 
-      {/* Resumen de acciones recientes */}
-      <Row className="mt-4">
-        <Col xs={12}>
-          <Card>
-            <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
-              <h6 className="mb-0">Acciones Recientes</h6>
-            </Card.Header>
-            <Card.Body style={{ maxHeight: '300px', overflowY: 'auto' }}>
-              {acciones.length === 0 ? (
-                <p className="text-muted">No hay acciones registradas</p>
-              ) : (
-                acciones.slice(-10).reverse().map((accion, index) => (
-                  <div key={accion.idAccion} className="d-flex justify-content-between align-items-center mb-2 p-2 bg-light rounded">
-                    <div>
-                      <Badge bg={accion.equipoAccion === 'LOCAL' ? 'primary' : 'danger'}>
-                        {accion.equipoAccion}
-                      </Badge>
-                      <span className="ms-2">{accion.evento}</span>
-                      <small className="text-muted ms-2">Pos: {accion.idPosesion}</small>
-                    </div>
-                    <div>
-                      <Badge bg={accion.cambioPosesion ? 'success' : 'warning'}>
-                        {accion.cambioPosesion ? 'Cambio' : 'Continúa'}
-                      </Badge>
-                    </div>
-                  </div>
-                ))
-              )}
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-  );
+            {selectedTeam && (
+                <Row className="mt-3">
+                    <Col xs={12} className="text-center">
+                        <Button
+                            style={{ backgroundColor: '#669bbc', border: 'none', padding: '12px 30px' }}
+                            onClick={handleSubmitAction}
+                            disabled={!isActionComplete}
+                            size="lg"
+                        >
+                            Registrar Acción
+                        </Button>
+                        <Button 
+                            variant="outline-secondary" 
+                            className="ms-3" 
+                            size="lg" 
+                            onClick={() => { 
+                                setSelectedTeam(null); 
+                                setNewAction({ 
+                                    ...initialActionState, 
+                                    idPartido: parseInt(id), 
+                                    idPosesion: currentPosesion 
+                                }); 
+                            }}
+                        >
+                            Cancelar
+                        </Button>
+                    </Col>
+                </Row>
+            )}
+
+            <Row className="mt-5">
+                <Col xs={12}>
+                    <Card>
+                        <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
+                            <h6 className="mb-0">Acciones Recientes (últimas 10)</h6>
+                        </Card.Header>
+                        <Card.Body style={{ maxHeight: '400px', overflowY: 'auto' }}>
+                            {acciones.length === 0 ? (
+                                <p className="text-muted">No hay acciones registradas</p>
+                            ) : (
+                                [...acciones].reverse().slice(0, 10).map((accion) => (
+                                <div key={accion.idAccion} className="d-flex justify-content-between align-items-center mb-2 p-2 bg-light rounded">
+                                    <div>
+                                        <span className="me-2 fw-bold">P:{accion.idPosesion}</span>
+                                        <Badge bg={accion.equipoAccion === 'LOCAL' ? 'primary' : 'danger'}>
+                                            {accion.equipoAccion.slice(0, 3)}
+                                        </Badge>
+                                        <span className="ms-2">{accion.evento.replace(/_/g, ' ')}</span>
+                                        {accion.detalleFinalizacion && <small className="text-muted ms-2 fst-italic">{`(${accion.detalleFinalizacion.replace(/_/g, ' ')})`}</small>}
+                                    </div>
+                                    <div>
+                                        <Badge bg={accion.cambioPosesion ? 'success' : 'warning'}>
+                                            {accion.cambioPosesion ? 'Cambio Posesión' : 'Mantiene Posesión'}
+                                        </Badge>
+                                    </div>
+                                </div>
+                                ))
+                            )}
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
+    );
 };
 
 export default MatchActionsView;
