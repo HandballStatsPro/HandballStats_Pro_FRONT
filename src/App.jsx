@@ -59,6 +59,9 @@ export default function App() {
               <Route path="/partidos"       element={<Partidos   />} />
               <Route path="/partidos/new"   element={<PartidoForm />} />
               <Route path="/partidos/:id"   element={<PartidoForm />} />
+              <Route path="/acciones"       element={<Acciones   />} />
+              <Route path="/acciones/partido/:idPartido" element={<AccionForm />} />
+              <Route path="/acciones/:id/edit" element={<AccionForm />} />
              </Route>
           </Route>
           <Route path="/estadisticas" element={<Estadisticas />} />
