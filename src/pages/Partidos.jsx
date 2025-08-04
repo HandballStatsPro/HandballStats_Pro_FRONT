@@ -169,6 +169,19 @@ const Partidos = () => {
                                         </Button>
                                         <Button
                                             size="sm"
+                                            className="me-2"
+                                            style={{
+                                                backgroundColor: '#28a745',
+                                                border: 'none',
+                                                borderRadius: '6px',
+                                                fontWeight: '500',
+                                            }}
+                                            onClick={() => navigate(`/acciones/partido/${p.idPartido}`)}
+                                        >
+                                            Acciones
+                                        </Button>
+                                        <Button
+                                            size="sm"
                                             style={{
                                                 backgroundColor: '#780000',
                                                 border: 'none',
