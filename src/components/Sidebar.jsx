@@ -13,6 +13,7 @@ import {
   FaUsersCog,
   FaFutbol,
   FaChartBar,
+  FaClipboardList,
 } from 'react-icons/fa';
 
 const Sidebar = ({ onToggle }) => {
