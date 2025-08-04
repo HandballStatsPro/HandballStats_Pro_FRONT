@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Form, Alert, Spinner, Table, Modal, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Alert, Spinner, Badge } from 'react-bootstrap';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getPartidoById } from '../services/partidoService';
 import { 
   getAccionesByPartido, 
   createAccion, 
-  updateAccion, 
   deleteAccion, 
   getAccionEnums 
 } from '../services/accionService';
 
 const AccionForm = () => {
-  const { idPartido, id } = useParams();
+  const { idPartido } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
   
@@ -25,7 +24,7 @@ const AccionForm = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   
-  // Estados del formulario
+  // Estados del formulario - siempre en modo rápido
   const [formData, setFormData] = useState({
     idPartido: parseInt(idPartido),
     idPosesion: 1,
@@ -38,12 +37,8 @@ const AccionForm = () => {
     detalleEvento: ''
   });
   
-  // Estados para la interfaz interactiva
-  const [isEditing, setIsEditing] = useState(false);
-  const [selectedAccionId, setSelectedAccionId] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [accionToDelete, setAccionToDelete] = useState(null);
-  const [isLiveMode, setIsLiveMode] = useState(false);
+  // Estado para el equipo actual (se cambia automáticamente)
+  const [equipoActual, setEquipoActual] = useState('LOCAL');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,24 +55,21 @@ const AccionForm = () => {
         const enumsData = await getAccionEnums();
         setEnums(enumsData);
         
-        // Si hay un ID de acción, cargar esa acción para editar
-        if (id) {
-          const accionToEdit = accionesData.find(a => a.idAccion === parseInt(id));
-          if (accionToEdit) {
-            setFormData({
-              idPartido: accionToEdit.idPartido,
-              idPosesion: accionToEdit.idPosesion,
-              equipoAccion: accionToEdit.equipoAccion,
-              tipoAtaque: accionToEdit.tipoAtaque,
-              origenAccion: accionToEdit.origenAccion,
-              evento: accionToEdit.evento,
-              detalleFinalizacion: accionToEdit.detalleFinalizacion || '',
-              zonaLanzamiento: accionToEdit.zonaLanzamiento || '',
-              detalleEvento: accionToEdit.detalleEvento || ''
-            });
-            setIsEditing(true);
-            setSelectedAccionId(parseInt(id));
-          }
+        // Configurar próxima posesión y equipo
+        if (accionesData.length > 0) {
+          const ultimaAccion = accionesData[accionesData.length - 1];
+          const proximaPosesion = ultimaAccion.idPosesion + 1;
+          // Cambiar equipo si la última acción tuvo cambio de posesión
+          const proximoEquipo = ultimaAccion.cambioPosesion ? 
+            (ultimaAccion.equipoAccion === 'LOCAL' ? 'VISITANTE' : 'LOCAL') :
+            ultimaAccion.equipoAccion;
+          
+          setFormData(prev => ({
+            ...prev,
+            idPosesion: proximaPosesion,
+            equipoAccion: proximoEquipo
+          }));
+          setEquipoActual(proximoEquipo);
         }
       } catch (err) {
         setError('Error cargando datos');
@@ -89,51 +81,68 @@ const AccionForm = () => {
     if (idPartido) {
       fetchData();
     }
-  }, [idPartido, id]);
+  }, [idPartido]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  // Función para cambiar valores rápidamente
+  const setQuickValue = (field, value) => {
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [field]: value
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Función para seleccionar zona rápidamente
+  const selectZone = (detalleFinalizacion, zona) => {
+    setFormData(prev => ({
+      ...prev,
+      detalleFinalizacion: detalleFinalizacion,
+      zonaLanzamiento: zona
+    }));
+  };
+
+  // Función para registrar acción rápidamente
+  const registrarAccionRapida = async () => {
+    if (!formData.detalleFinalizacion || !formData.zonaLanzamiento) {
+      setError('Selecciona zona de lanzamiento');
+      return;
+    }
+
     setSaving(true);
     setError('');
     setSuccess('');
 
     try {
-      if (isEditing) {
-        await updateAccion(selectedAccionId, formData);
-        setSuccess('Acción actualizada correctamente');
-        setIsEditing(false);
-        setSelectedAccionId(null);
-      } else {
-        await createAccion(formData);
-        setSuccess('Acción creada correctamente');
-        // Incrementar posesión automáticamente para el siguiente registro
-        setFormData(prev => ({
-          ...prev,
-          idPosesion: prev.idPosesion + 1
-        }));
-      }
+      await createAccion(formData);
       
       // Recargar acciones
       const accionesData = await getAccionesByPartido(idPartido);
       setAcciones(accionesData);
       
-      // Si no está en modo edición, limpiar algunos campos para la siguiente acción
-      if (!isEditing) {
-        setFormData(prev => ({
-          ...prev,
-          detalleFinalizacion: '',
-          zonaLanzamiento: '',
-          detalleEvento: ''
-        }));
-      }
+      // Preparar siguiente acción
+      const nuevaAccion = accionesData[accionesData.length - 1];
+      const proximaPosesion = nuevaAccion.idPosesion + 1;
+      const proximoEquipo = nuevaAccion.cambioPosesion ? 
+        (nuevaAccion.equipoAccion === 'LOCAL' ? 'VISITANTE' : 'LOCAL') :
+        nuevaAccion.equipoAccion;
+
+      setFormData({
+        idPartido: parseInt(idPartido),
+        idPosesion: proximaPosesion,
+        equipoAccion: proximoEquipo,
+        tipoAtaque: 'Posicional', // Reset a default
+        origenAccion: 'Juego_Continuado', // Reset a default
+        evento: 'Gol', // Reset a default
+        detalleFinalizacion: '',
+        zonaLanzamiento: '',
+        detalleEvento: ''
+      });
+
+      setEquipoActual(proximoEquipo);
+      setSuccess(`Acción registrada. Turno: ${proximoEquipo === 'LOCAL' ? partido.nombreEquipoLocal : partido.nombreEquipoVisitante}`);
+      
+      // Limpiar mensaje de éxito después de 2 segundos
+      setTimeout(() => setSuccess(''), 2000);
+      
     } catch (err) {
       setError('Error guardando la acción');
     } finally {
@@ -141,81 +150,58 @@ const AccionForm = () => {
     }
   };
 
-  const handleEdit = (accion) => {
-    setFormData({
-      idPartido: accion.idPartido,
-      idPosesion: accion.idPosesion,
-      equipoAccion: accion.equipoAccion,
-      tipoAtaque: accion.tipoAtaque,
-      origenAccion: accion.origenAccion,
-      evento: accion.evento,
-      detalleFinalizacion: accion.detalleFinalizacion || '',
-      zonaLanzamiento: accion.zonaLanzamiento || '',
-      detalleEvento: accion.detalleEvento || ''
-    });
-    setIsEditing(true);
-    setSelectedAccionId(accion.idAccion);
-  };
-
-  const handleCancelEdit = () => {
-    setIsEditing(false);
-    setSelectedAccionId(null);
-    setFormData({
-      idPartido: parseInt(idPartido),
-      idPosesion: acciones.length + 1,
-      equipoAccion: 'LOCAL',
-      tipoAtaque: 'Posicional',
-      origenAccion: 'Juego_Continuado',
-      evento: 'Gol',
-      detalleFinalizacion: '',
-      zonaLanzamiento: '',
-      detalleEvento: ''
-    });
-  };
-
-  const handleDelete = async (accionId) => {
+  // Función para eliminar acción rápidamente
+  const eliminarAccionRapida = async (accionId) => {
     try {
       await deleteAccion(accionId);
       const accionesData = await getAccionesByPartido(idPartido);
       setAcciones(accionesData);
-      setShowDeleteModal(false);
-      setSuccess('Acción eliminada correctamente');
+      
+      // Reajustar posesión si es necesario
+      if (accionesData.length > 0) {
+        const ultimaAccion = accionesData[accionesData.length - 1];
+        const proximaPosesion = ultimaAccion.idPosesion + 1;
+        const proximoEquipo = ultimaAccion.cambioPosesion ? 
+          (ultimaAccion.equipoAccion === 'LOCAL' ? 'VISITANTE' : 'LOCAL') :
+          ultimaAccion.equipoAccion;
+        
+        setFormData(prev => ({
+          ...prev,
+          idPosesion: proximaPosesion,
+          equipoAccion: proximoEquipo
+        }));
+        setEquipoActual(proximoEquipo);
+      } else {
+        setFormData(prev => ({
+          ...prev,
+          idPosesion: 1,
+          equipoAccion: 'LOCAL'
+        }));
+        setEquipoActual('LOCAL');
+      }
     } catch (err) {
       setError('Error eliminando la acción');
     }
   };
 
-  const confirmDelete = (accion) => {
-    setAccionToDelete(accion);
-    setShowDeleteModal(true);
-  };
-
-  // Función para obtener el grid de zonas según el tipo de ataque
+  // Obtener configuración de zonas según tipo de ataque
   const getZonasGrid = () => {
     if (formData.tipoAtaque === 'Posicional') {
       return [
-        { id: 'Lanzamiento_Exterior', label: 'Exterior', zones: ['Izquierda', 'Centro', 'Derecha'] },
-        { id: 'Pivote', label: 'Pivote', zones: ['Centro'] },
-        { id: 'Penetracion', label: 'Penetración', zones: ['Izquierda', 'Centro', 'Derecha'] },
-        { id: 'Extremo', label: 'Extremo', zones: ['Izquierda', 'Derecha'] },
-        { id: '_7m', label: '7m', zones: ['_7m'] }
+        { id: 'Lanzamiento_Exterior', label: 'EXTERIOR', zones: ['Izquierda', 'Centro', 'Derecha'], color: '#007bff' },
+        { id: 'Pivote', label: 'PIVOTE', zones: ['Centro'], color: '#28a745' },
+        { id: 'Penetracion', label: 'PENETRACIÓN', zones: ['Izquierda', 'Centro', 'Derecha'], color: '#ffc107' },
+        { id: 'Extremo', label: 'EXTREMO', zones: ['Izquierda', 'Derecha'], color: '#dc3545' },
+        { id: '_7m', label: '7M', zones: ['_7m'], color: '#6f42c1' }
       ];
     } else {
       return [
-        { id: 'Contragol', label: 'Contragol', zones: ['Izquierda', 'Centro', 'Derecha'] },
-        { id: 'Primera_Oleada', label: '1ª Oleada', zones: ['Izquierda', 'Centro', 'Derecha'] },
-        { id: 'Segunda_Oleada', label: '2ª Oleada', zones: ['Izquierda', 'Centro', 'Derecha'] },
-        { id: 'Tercera_Oleada', label: '3ª Oleada', zones: ['Izquierda', 'Centro', 'Derecha'] }
+        { id: 'Contragol', label: 'CONTRAGOL', zones: ['Izquierda', 'Centro', 'Derecha'], color: '#20c997' },
+        { id: 'Primera_Oleada', label: '1ª OLEADA', zones: ['Izquierda', 'Centro', 'Derecha'], color: '#fd7e14' },
+        { id: 'Segunda_Oleada', label: '2ª OLEADA', zones: ['Izquierda', 'Centro', 'Derecha'], color: '#e83e8c' },
+        { id: 'Tercera_Oleada', label: '3ª OLEADA', zones: ['Izquierda', 'Centro', 'Derecha'], color: '#6610f2' }
       ];
     }
-  };
-
-  const handleZoneClick = (detalleFinalizacion, zona) => {
-    setFormData(prev => ({
-      ...prev,
-      detalleFinalizacion: detalleFinalizacion,
-      zonaLanzamiento: zona
-    }));
   };
 
   if (loading) {
@@ -235,25 +221,29 @@ const AccionForm = () => {
     );
   }
 
+  const equipoEnTurno = equipoActual === 'LOCAL' ? partido.nombreEquipoLocal : partido.nombreEquipoVisitante;
+
   return (
     <Container fluid className="mt-3">
-      {/* Header del partido */}
-      <Row className="mb-4">
+      {/* Header del partido con info del turno */}
+      <Row className="mb-3">
         <Col>
           <Card>
-            <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
+            <Card.Header style={{ 
+              backgroundColor: equipoActual === 'LOCAL' ? '#669bbc' : '#780000', 
+              color: 'white' 
+            }}>
               <div className="d-flex justify-content-between align-items-center">
                 <h4 className="mb-0">
                   {partido.nombreEquipoLocal} vs {partido.nombreEquipoVisitante}
                 </h4>
-                <div>
-                  <Button
-                    variant={isLiveMode ? 'success' : 'outline-light'}
-                    onClick={() => setIsLiveMode(!isLiveMode)}
-                    className="me-2"
-                  >
-                    {isLiveMode ? 'MODO EN VIVO' : 'ACTIVAR MODO EN VIVO'}
-                  </Button>
+                <div className="d-flex align-items-center gap-3">
+                  <Badge bg="light" text="dark" style={{ fontSize: '1.2rem', padding: '8px 15px' }}>
+                    Posesión #{formData.idPosesion}
+                  </Badge>
+                  <Badge bg="warning" text="dark" style={{ fontSize: '1.2rem', padding: '8px 15px' }}>
+                    TURNO: {equipoEnTurno}
+                  </Badge>
                   <Button 
                     variant="outline-light" 
                     onClick={() => navigate('/acciones')}
@@ -263,15 +253,11 @@ const AccionForm = () => {
                 </div>
               </div>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="py-2">
               <Row>
-                <Col md={6}>
-                  <p><strong>Fecha:</strong> {new Date(partido.fecha).toLocaleDateString('es-ES')}</p>
-                  <p><strong>Competición:</strong> {partido.competicion || 'No especificada'}</p>
-                </Col>
-                <Col md={6}>
-                  <p><strong>Resultado:</strong> {partido.resultado || 'Por disputar'}</p>
-                  <p><strong>Total de acciones:</strong> <Badge bg="primary">{acciones.length}</Badge></p>
+                <Col>
+                  <span className="fw-bold">Total acciones: </span>
+                  <Badge bg="primary">{acciones.length}</Badge>
                 </Col>
               </Row>
             </Card.Body>
@@ -279,264 +265,219 @@ const AccionForm = () => {
         </Col>
       </Row>
 
+      {error && <Alert variant="danger">{error}</Alert>}
+      {success && <Alert variant="success">{success}</Alert>}
+
       <Row>
-        {/* Formulario de acciones */}
+        {/* Panel de controles rápidos */}
         <Col lg={8}>
-          <Card className="mb-4">
-            <Card.Header style={{ backgroundColor: '#780000', color: 'white' }}>
-              <h5 className="mb-0">
-                {isEditing ? 'Editar Acción' : 'Registrar Nueva Acción'}
-              </h5>
+          <Card className="mb-3">
+            <Card.Header style={{ backgroundColor: '#343a40', color: 'white' }}>
+              <h5 className="mb-0">⚡ REGISTRO RÁPIDO DE ACCIONES</h5>
             </Card.Header>
             <Card.Body>
-              {error && <Alert variant="danger">{error}</Alert>}
-              {success && <Alert variant="success">{success}</Alert>}
               
-              <Form onSubmit={handleSubmit}>
-                <Row>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Posesión #</Form.Label>
-                      <Form.Control
-                        type="number"
-                        name="idPosesion"
-                        value={formData.idPosesion}
-                        onChange={handleInputChange}
-                        min="1"
-                        required
-                        disabled={isLiveMode}
-                      />
-                    </Form.Group>
-                  </Col>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Equipo</Form.Label>
-                      <Form.Select
-                        name="equipoAccion"
-                        value={formData.equipoAccion}
-                        onChange={handleInputChange}
-                        required
+              {/* Tipo de Ataque */}
+              <Row className="mb-3">
+                <Col>
+                  <h6>TIPO DE ATAQUE:</h6>
+                  <div className="d-flex gap-2">
+                    {enums.tipoAtaque?.map(tipo => (
+                      <Button
+                        key={tipo}
+                        size="lg"
+                        onClick={() => setQuickValue('tipoAtaque', tipo)}
+                        variant={formData.tipoAtaque === tipo ? 'primary' : 'outline-primary'}
+                        style={{ minWidth: '150px' }}
                       >
-                        <option value="LOCAL">{partido.nombreEquipoLocal}</option>
-                        <option value="VISITANTE">{partido.nombreEquipoVisitante}</option>
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Tipo de Ataque</Form.Label>
-                      <Form.Select
-                        name="tipoAtaque"
-                        value={formData.tipoAtaque}
-                        onChange={handleInputChange}
-                        required
-                      >
-                        {enums.tipoAtaque?.map(tipo => (
-                          <option key={tipo} value={tipo}>{tipo}</option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                </Row>
+                        {tipo}
+                      </Button>
+                    ))}
+                  </div>
+                </Col>
+              </Row>
 
-                <Row>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Origen de la Acción</Form.Label>
-                      <Form.Select
-                        name="origenAccion"
-                        value={formData.origenAccion}
-                        onChange={handleInputChange}
-                        required
+              {/* Origen de la Acción */}
+              <Row className="mb-3">
+                <Col>
+                  <h6>ORIGEN:</h6>
+                  <div className="d-flex gap-2 flex-wrap">
+                    {enums.origenAccion?.map(origen => (
+                      <Button
+                        key={origen}
+                        onClick={() => setQuickValue('origenAccion', origen)}
+                        variant={formData.origenAccion === origen ? 'success' : 'outline-success'}
+                        style={{ minWidth: '120px' }}
                       >
-                        {enums.origenAccion?.map(origen => (
-                          <option key={origen} value={origen}>
-                            {origen.replace('_', ' ')}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Evento</Form.Label>
-                      <Form.Select
-                        name="evento"
-                        value={formData.evento}
-                        onChange={handleInputChange}
-                        required
-                      >
-                        {enums.evento?.map(evento => (
-                          <option key={evento} value={evento}>
-                            {evento.replace('_', ' ')}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                  <Col md={4}>
-                    <Form.Group className="mb-3">
-                      <Form.Label>Detalle del Evento</Form.Label>
-                      <Form.Select
-                        name="detalleEvento"
-                        value={formData.detalleEvento}
-                        onChange={handleInputChange}
-                      >
-                        <option value="">Seleccionar...</option>
-                        {enums.detalleEvento?.map(detalle => (
-                          <option key={detalle} value={detalle}>
-                            {detalle.replace('_', ' ')}
-                          </option>
-                        ))}
-                      </Form.Select>
-                    </Form.Group>
-                  </Col>
-                </Row>
+                        {origen.replace('_', ' ')}
+                      </Button>
+                    ))}
+                  </div>
+                </Col>
+              </Row>
 
-                {/* Grid de la pista con imagen de fondo */}
-                <Card className="mb-4">
-                  <Card.Header>
-                    <h6 className="mb-0">
-                      Seleccionar Zona de Lanzamiento - {formData.tipoAtaque}
-                    </h6>
-                  </Card.Header>
-                  <Card.Body style={{ 
-                    backgroundImage: 'url(/pista_bm.png)',
-                    backgroundSize: 'contain',
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'center',
-                    minHeight: '400px',
-                    position: 'relative'
-                  }}>
-                    <div className="position-relative" style={{ height: '100%' }}>
-                      {getZonasGrid().map((finalizacion, index) => (
-                        <div key={finalizacion.id} className="mb-2">
-                          <h6 className="text-center mb-2 bg-white bg-opacity-75 rounded p-1">
+              {/* Evento */}
+              <Row className="mb-3">
+                <Col>
+                  <h6>EVENTO:</h6>
+                  <div className="d-flex gap-2 flex-wrap">
+                    {enums.evento?.map(evento => (
+                      <Button
+                        key={evento}
+                        size="lg"
+                        onClick={() => setQuickValue('evento', evento)}
+                        variant={formData.evento === evento ? 'warning' : 'outline-warning'}
+                        style={{ minWidth: '140px' }}
+                      >
+                        {evento.replace('_', ' ')}
+                      </Button>
+                    ))}
+                  </div>
+                </Col>
+              </Row>
+
+              {/* Grid de la pista */}
+              <Card className="mb-3">
+                <Card.Header>
+                  <h6 className="mb-0">🎯 SELECCIONA ZONA - {formData.tipoAtaque}</h6>
+                </Card.Header>
+                <Card.Body style={{ 
+                  backgroundImage: 'url(/pista_bm.png)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  minHeight: '350px',
+                  position: 'relative'
+                }}>
+                  <div className="position-relative">
+                    {getZonasGrid().map((finalizacion, index) => (
+                      <div key={finalizacion.id} className="mb-3">
+                        <div className="text-center mb-2">
+                          <Badge 
+                            bg="dark" 
+                            style={{ 
+                              fontSize: '0.9rem', 
+                              padding: '5px 10px',
+                              backgroundColor: finalizacion.color + '!important'
+                            }}
+                          >
                             {finalizacion.label}
-                          </h6>
-                          <Row className="justify-content-center">
-                            {finalizacion.zones.map(zona => (
-                              <Col key={zona} xs="auto" className="mb-2">
-                                <Button
-                                  variant={
-                                    formData.detalleFinalizacion === finalizacion.id && 
-                                    formData.zonaLanzamiento === zona 
-                                      ? 'success' 
-                                      : 'outline-primary'
-                                  }
-                                  size="sm"
-                                  onClick={() => handleZoneClick(finalizacion.id, zona)}
-                                  style={{
-                                    backgroundColor: formData.detalleFinalizacion === finalizacion.id && 
-                                                   formData.zonaLanzamiento === zona 
-                                                     ? '#28a745' 
-                                                     : 'rgba(255,255,255,0.8)',
-                                    border: '2px solid #669bbc',
-                                    fontWeight: 'bold'
-                                  }}
-                                >
-                                  {zona.replace('_', ' ')}
-                                </Button>
-                              </Col>
-                            ))}
-                          </Row>
+                          </Badge>
                         </div>
-                      ))}
-                    </div>
-                  </Card.Body>
-                </Card>
+                        <div className="d-flex justify-content-center gap-2 flex-wrap">
+                          {finalizacion.zones.map(zona => (
+                            <Button
+                              key={zona}
+                              size="lg"
+                              onClick={() => selectZone(finalizacion.id, zona)}
+                              style={{
+                                minWidth: '120px',
+                                backgroundColor: 
+                                  formData.detalleFinalizacion === finalizacion.id && 
+                                  formData.zonaLanzamiento === zona 
+                                    ? finalizacion.color 
+                                    : 'rgba(255,255,255,0.9)',
+                                border: `3px solid ${finalizacion.color}`,
+                                color: formData.detalleFinalizacion === finalizacion.id && 
+                                       formData.zonaLanzamiento === zona 
+                                         ? 'white' 
+                                         : finalizacion.color,
+                                fontWeight: 'bold',
+                                fontSize: '1rem'
+                              }}
+                            >
+                              {zona.replace('_', ' ')}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </Card.Body>
+              </Card>
 
-                {/* Selección actual */}
-                {formData.detalleFinalizacion && formData.zonaLanzamiento && (
-                  <Alert variant="info">
-                    <strong>Selección actual:</strong> {formData.detalleFinalizacion.replace('_', ' ')} 
-                    - {formData.zonaLanzamiento.replace('_', ' ')}
-                  </Alert>
-                )}
-
-                <div className="d-flex gap-2">
-                  <Button
-                    type="submit"
-                    disabled={saving}
-                    style={{ backgroundColor: '#669bbc', border: 'none' }}
-                  >
-                    {saving ? (
-                      <>
-                        <Spinner size="sm" className="me-2" />
-                        {isEditing ? 'Actualizando...' : 'Guardando...'}
-                      </>
-                    ) : (
-                      isEditing ? 'Actualizar Acción' : 'Registrar Acción'
-                    )}
-                  </Button>
-                  
-                  {isEditing && (
-                    <Button
-                      type="button"
-                      variant="secondary"
-                      onClick={handleCancelEdit}
-                    >
-                      Cancelar Edición
-                    </Button>
+              {/* Botón de registro */}
+              <div className="text-center">
+                <Button
+                  size="lg"
+                  onClick={registrarAccionRapida}
+                  disabled={saving || !formData.detalleFinalizacion || !formData.zonaLanzamiento}
+                  style={{ 
+                    backgroundColor: '#28a745', 
+                    border: 'none',
+                    fontSize: '1.3rem',
+                    padding: '15px 40px',
+                    minWidth: '250px'
+                  }}
+                >
+                  {saving ? (
+                    <>
+                      <Spinner size="sm" className="me-2" />
+                      REGISTRANDO...
+                    </>
+                  ) : (
+                    '✅ REGISTRAR ACCIÓN'
                   )}
-                </div>
-              </Form>
+                </Button>
+              </div>
+
+              {/* Selección actual */}
+              {formData.detalleFinalizacion && formData.zonaLanzamiento && (
+                <Alert variant="info" className="mt-3 text-center">
+                  <strong>📍 Selección:</strong> {formData.detalleFinalizacion.replace('_', ' ')} 
+                  - {formData.zonaLanzamiento.replace('_', ' ')}
+                </Alert>
+              )}
             </Card.Body>
           </Card>
         </Col>
 
-        {/* Lista de acciones */}
+        {/* Lista de acciones recientes */}
         <Col lg={4}>
           <Card>
             <Card.Header style={{ backgroundColor: '#669bbc', color: 'white' }}>
-              <h6 className="mb-0">Acciones Registradas ({acciones.length})</h6>
+              <h6 className="mb-0">📋 ÚLTIMAS ACCIONES ({acciones.length})</h6>
             </Card.Header>
             <Card.Body style={{ maxHeight: '600px', overflowY: 'auto' }}>
               {acciones.length === 0 ? (
                 <p className="text-muted text-center">No hay acciones registradas</p>
               ) : (
-                acciones.map((accion, index) => (
+                acciones.slice().reverse().map((accion, index) => (
                   <Card key={accion.idAccion} className="mb-2" size="sm">
                     <Card.Body className="p-2">
                       <div className="d-flex justify-content-between align-items-start">
-                        <div>
-                          <small>
-                            <strong>#{accion.idPosesion}</strong> - {accion.equipoAccion} - {accion.evento}
-                            <br />
+                        <div style={{ fontSize: '0.85rem' }}>
+                          <div className="d-flex align-items-center gap-2 mb-1">
+                            <Badge bg={accion.equipoAccion === 'LOCAL' ? 'primary' : 'danger'}>
+                              #{accion.idPosesion}
+                            </Badge>
+                            <strong>{accion.equipoAccion}</strong>
+                            <Badge bg="secondary">{accion.evento}</Badge>
+                          </div>
+                          <div>
                             {accion.tipoAtaque} | {accion.origenAccion.replace('_', ' ')}
-                            {accion.detalleFinalizacion && (
-                              <>
-                                <br />
-                                <Badge bg="secondary" className="me-1">
-                                  {accion.detalleFinalizacion.replace('_', ' ')}
+                          </div>
+                          {accion.detalleFinalizacion && (
+                            <div className="mt-1">
+                              <Badge bg="info" className="me-1">
+                                {accion.detalleFinalizacion.replace('_', ' ')}
+                              </Badge>
+                              {accion.zonaLanzamiento && (
+                                <Badge bg="warning">
+                                  {accion.zonaLanzamiento.replace('_', ' ')}
                                 </Badge>
-                                {accion.zonaLanzamiento && (
-                                  <Badge bg="info">
-                                    {accion.zonaLanzamiento.replace('_', ' ')}
-                                  </Badge>
-                                )}
-                              </>
-                            )}
-                          </small>
+                              )}
+                            </div>
+                          )}
                         </div>
-                        <div className="d-flex flex-column gap-1">
-                          <Button
-                            size="sm"
-                            variant="outline-primary"
-                            onClick={() => handleEdit(accion)}
-                            style={{ fontSize: '0.7rem', padding: '2px 6px' }}
-                          >
-                            Editar
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="outline-danger"
-                            onClick={() => confirmDelete(accion)}
-                            style={{ fontSize: '0.7rem', padding: '2px 6px' }}
-                          >
-                            Eliminar
-                          </Button>
-                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline-danger"
+                          onClick={() => eliminarAccionRapida(accion.idAccion)}
+                          style={{ fontSize: '0.7rem', padding: '2px 6px' }}
+                        >
+                          ✕
+                        </Button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -546,32 +487,6 @@ const AccionForm = () => {
           </Card>
         </Col>
       </Row>
-
-      {/* Modal de confirmación de eliminación */}
-      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmar Eliminación</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          ¿Estás seguro de que deseas eliminar esta acción?
-          {accionToDelete && (
-            <div className="mt-2">
-              <strong>Posesión #{accionToDelete.idPosesion}</strong> - {accionToDelete.equipoAccion} - {accionToDelete.evento}
-            </div>
-          )}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-            Cancelar
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => handleDelete(accionToDelete.idAccion)}
-          >
-            Eliminar
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </Container>
   );
 };
