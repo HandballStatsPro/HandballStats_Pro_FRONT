@@ -13,6 +13,8 @@ import Equipos from './pages/Equipos';
 import EquipoForm from './pages/EquipoForm';
 import Partidos    from "./pages/Partidos";
 import PartidoForm from "./pages/PartidoForm";
+import Acciones from "./pages/Acciones";
+import AccionForm from "./pages/AccionForm";
 import Estadisticas from './pages/Estadisticas';
 
 
